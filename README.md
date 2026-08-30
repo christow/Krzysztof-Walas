@@ -28,13 +28,20 @@ and, if you replace it, update the "Photo: IDEAS NCBR" credit in the `<figcaptio
 
 ## Where the content came from
 
-Everything on the page was taken from public sources, checked on 29 Aug 2026. Please read it through once —
-in particular the dates in the *Bio* timeline and the INTENTION start date, which the sources do not state.
+Everything on the page was taken from public sources, checked on 29 Aug 2026, except the Lute role and its
+2026 start date, which were confirmed directly. Please read it through once — in particular the dates in the
+*Bio* timeline and the INTENTION start date, which the sources do not state.
+
+The page deliberately carries **no email address, postal address or phone number**. Contact runs through the
+linked profiles only. If you add a contact route later, put it in the `#contact` section.
 
 | Content | Source |
 |---|---|
+| Lute, CTO role and company description | Confirmed directly by Krzysztof Walas; company copy from the `website` repo (lute.one) |
+| Lute product details — order picking at 40k+ SKUs, sub-mm wire threading, fleet/MES tooling, offices | lute.one site content (`website` repo: `content/blog-posts.ts`, `content/business.ts`, `content/site-config.ts`) |
+| OpenGVL benchmark | https://arxiv.org/abs/2509.17321 |
 | Bio, degrees, postdoc, LIDER/THING/REMODEL, ELLIS membership | https://ideas-ncbr.pl/en/krzysztof-walas-joins-ellis-society/ and https://ellis.ideas.edu.pl/people/ |
-| Current PUT role, email, office, phone, ORCID, LinkedIn | https://robotics.put.poznan.pl/perception-for-physical-interaction/ |
+| Current PUT role, ORCID, LinkedIn | https://robotics.put.poznan.pl/perception-for-physical-interaction/ |
 | Project dates, funders and PI role | https://robotics.put.poznan.pl/research-projects/ |
 | REMODEL details | https://cordis.europa.eu/project/id/870133 |
 | THING details | https://cordis.europa.eu/project/id/780883 |

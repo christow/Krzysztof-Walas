@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Krzysztof Walas — Roboticist · Perception for Physical Interaction</title>
-  <meta name="description" content="Krzysztof Walas is a roboticist working on perception for physical interaction: legged robots that sense terrain by touch and manipulators that estimate the physical properties of what they hold. Assistant Professor at Poznan University of Technology and researcher at the IDEAS Research Institute.">
-  <meta property="og:title" content="Krzysztof Walas — Roboticist">
-  <meta property="og:description" content="Perception for physical interaction: legged locomotion, haptic terrain sensing, deformable-object manipulation.">
+  <title>Krzysztof Walas — CTO at Lute · Physical AI and Robotics</title>
+  <meta name="description" content="Krzysztof Walas is Chief Technology Officer at Lute, building mobile robots that learn physical work from human demonstrations and go into real factories and shop floors. Roboticist, Assistant Professor at Poznan University of Technology, ELLIS Society member and Adra board member.">
+  <meta property="og:title" content="Krzysztof Walas — CTO at Lute">
+  <meta property="og:description" content="Physical AI in production: robots that learn from human demonstrations, deployed on factory floors and in retail.">
   <meta property="og:type" content="profile">
   <meta property="og:image" content="assets/krzysztof-walas.png">
 
@@ -326,6 +326,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 32px;
     }
+    .contact.single { grid-template-columns: 1fr; max-width: 620px; }
     .contact p { margin: 0 0 10px; }
     .contact .k {
       font-family: var(--mono);
@@ -389,6 +390,7 @@
 <header class="wrap site-head">
   <a class="brand" href="#top">Krzysztof Walas</a>
   <nav class="site-nav" aria-label="Sections">
+    <a href="#lute">Lute</a>
     <a href="#research">Research</a>
     <a href="#projects">Projects</a>
     <a href="#publications">Publications</a>
@@ -406,16 +408,19 @@
 
   <div class="hero">
     <div>
-      <span class="eyebrow">Krzysztof Walas, PhD · Roboticist · Poznań &amp; Warsaw</span>
-      <h1>Perception for <em>physical interaction.</em></h1>
+      <span class="eyebrow">Krzysztof Walas, PhD · CTO at Lute · Poznań &amp; Warsaw</span>
+      <h1>Physical AI that <em>leaves the lab.</em></h1>
       <p class="lede">
-        Krzysztof Walas builds robots that understand the physics of the world they touch:
-        legged machines that read the ground through their feet, and manipulators that
-        sense the stiffness, friction and shape of what they hold. He is an Assistant Professor
-        at Poznan University of Technology's Institute of Robotics and Machine Intelligence
-        and a researcher at the IDEAS Research Institute in Warsaw.
+        Krzysztof Walas is Chief Technology Officer at
+        <a href="https://lute.one" target="_blank" rel="noopener">Lute</a>, building mobile robots
+        that learn physical work from human demonstrations and take it into real factories,
+        warehouses and shop floors. Nearly two decades of research into how machines perceive
+        contact — how a foot reads the ground, how a gripper feels what it holds — now pointed at
+        a harder test than a benchmark: doing useful work in buildings full of people. He remains
+        an Assistant Professor at Poznan University of Technology.
       </p>
       <div class="links">
+        <a class="btn" href="https://lute.one" rel="noopener" target="_blank">Lute<small>↗</small></a>
         <a class="btn" href="https://scholar.google.com/citations?user=0FZ0cZQAAAAJ&amp;hl=en" rel="me noopener" target="_blank">Google Scholar<small>↗</small></a>
         <a class="btn" href="https://www.linkedin.com/in/krzysztof-walas-850492a7/" rel="me noopener" target="_blank">LinkedIn<small>↗</small></a>
         <a class="btn" href="https://x.com/KrzysztofTWalas" rel="me noopener" target="_blank">X<small>↗</small></a>
@@ -442,17 +447,58 @@
   </div>
 
   <div class="now" aria-label="Current roles">
+    <div><p class="k">Lute · since 2026</p><p class="v">Chief Technology Officer, <a href="https://lute.one" target="_blank" rel="noopener">Lute</a> — physical AI for mobile manipulation; Redwood City &amp; Warsaw</p></div>
     <div><p class="k">Poznań · now</p><p class="v">Assistant Professor, Institute of Robotics and Machine Intelligence, Poznan University of Technology</p></div>
-    <div><p class="k">Warsaw · now</p><p class="v">Researcher, IDEAS Research Institute, Warsaw; led the Physical Interaction Robotics team at IDEAS NCBR</p></div>
     <div><p class="k">Adra · since June 2024</p><p class="v">Board of Directors, Adra — the AI, Data and Robotics Association (robotics, research community)</p></div>
     <div><p class="k">ELLIS · since Feb 2024</p><p class="v">Member of the ELLIS Society, the European Laboratory for Learning and Intelligent Systems</p></div>
   </div>
+
+  <section id="lute">
+    <div class="sec">
+      <div>
+        <h2>Lute</h2>
+        <p class="note">Physical AI in production. Company site at <a href="https://lute.one" target="_blank" rel="noopener">lute.one</a>.</p>
+      </div>
+      <div>
+        <p style="margin:0 0 24px; max-width: 64ch;">
+          Lute builds mobile robots that learn from human demonstrations, aimed at the work that
+          is going undone because there is nobody to do it. As CTO, Krzysztof Walas owns the
+          technical direction: the robots, the data pipeline that teaches them, and everything it
+          takes to run a fleet in someone else's building rather than in a laboratory. The company
+          works out of Redwood City, California and Warsaw, Poland.
+        </p>
+        <div class="cards">
+          <article class="card">
+            <h3>Learning from human demonstrations</h3>
+            <p>Policies are learned from curated teleoperated demonstrations and improve as more arrive. The hard part is not collecting data but knowing which of it is worth training on — a reward model and temporal-progress estimates rank trajectories by quality across different robots and different operators.</p>
+            <p class="tags">imitation learning · data curation · fleet learning</p>
+          </article>
+          <article class="card">
+            <h3>Order picking on a live shop floor</h3>
+            <p>A retail deployment picking against a catalogue of more than 40,000 SKUs while the shop is open, working around staff and customers. Orders arrive from the customer's own systems; the robot localises, plans, avoids obstacles, recovers from its own failures and gets to the drop-off point.</p>
+            <p class="tags">mobile manipulation · retail · autonomy in the wild</p>
+          </article>
+          <article class="card">
+            <h3>Assembly that punishes imprecision</h3>
+            <p>Factory subtasks with no tolerance for a near miss — threading a wire inside a fibre-reinforced polymer tube to sub-millimetre accuracy, for instance. These are where general-purpose policies still break, and where the distance between a convincing demo and a production cell has to be measured honestly.</p>
+            <p class="tags">precision manipulation · manufacturing · evaluation</p>
+          </article>
+          <article class="card">
+            <h3>OpenGVL — measuring data quality</h3>
+            <p>An open benchmark for estimating how far a trajectory has progressed toward its goal, across both robot and human demonstrations, using vision-language models. It exists so dataset curation can be automated and audited instead of done by eye. <a href="https://arxiv.org/abs/2509.17321" target="_blank" rel="noopener">arXiv:2509.17321</a></p>
+            <p class="tags">benchmark · VLMs · open research</p>
+          </article>
+        </div>
+        <p class="field">The thread running back to the academic work is unchanged: a robot that can feel what it is doing fails more gracefully than one that can only look at it. What changed is the bar. A deployed system has to work on a Tuesday afternoon, in a building full of people, without anyone standing by to reset it.</p>
+      </div>
+    </div>
+  </section>
 
   <section id="research">
     <div class="sec">
       <div>
         <h2>Research</h2>
-        <p class="note">Perception applied to two kinds of contact: walking and grasping. Team page at <a href="https://robotics.put.poznan.pl/perception-for-physical-interaction/" target="_blank" rel="noopener">PUT robotics</a>.</p>
+        <p class="note">The groundwork the product stands on — perception applied to two kinds of contact, walking and grasping. Team page at <a href="https://robotics.put.poznan.pl/perception-for-physical-interaction/" target="_blank" rel="noopener">PUT robotics</a>.</p>
       </div>
       <div>
         <div class="cards">
@@ -616,7 +662,7 @@
     <div class="sec">
       <div>
         <h2>Bio</h2>
-        <p class="note">From hexapods in Poznań to boards in Brussels.</p>
+        <p class="note">From hexapods in Poznań to robots on a live shop floor.</p>
       </div>
       <div>
         <p style="margin:0 0 26px; max-width: 64ch;">
@@ -625,7 +671,10 @@
           structured environments — work that grew up alongside the university's Messor walking robots. He then joined the
           Intelligent Robotics Laboratory at the University of Birmingham's School of Computer Science as a postdoctoral
           researcher, working on object categorisation and pose estimation from 3D data, before returning to Poznań to lead
-          the Perception for Physical Interaction team.
+          the Perception for Physical Interaction team. In 2023 he took on a research team lead role
+          at IDEAS NCBR in Warsaw, and in 2026 moved into industry as Chief Technology Officer of
+          Lute — carrying the same question about contact and physical understanding out of the
+          laboratory and into systems that have to earn their keep.
         </p>
         <ul class="rows two">
           <li><span class="when">2007 – 2012</span><p class="what"><strong>Research and teaching assistant</strong><span class="d muted">Institute of Control and Information Engineering, Poznan University of Technology</span></p></li>
@@ -633,9 +682,10 @@
           <li><span class="when">2014</span><p class="what"><strong>Postdoctoral research associate</strong><span class="d muted">Intelligent Robotics Lab, School of Computer Science, University of Birmingham</span></p></li>
           <li><span class="when">2017</span><p class="what"><strong>LIDER grant</strong><span class="d muted">National Centre for Research and Development (NCBR), Poland</span></p></li>
           <li><span class="when">2018 – 2023</span><p class="what"><strong>Principal investigator at PUT in two Horizon 2020 projects</strong><span class="d muted">THING (subterranean legged locomotion) and REMODEL (deformable-object manipulation)</span></p></li>
-          <li><span class="when">2023</span><p class="what"><strong>Research team lead, Physical Interaction Robotics</strong><span class="d muted">IDEAS NCBR, Warsaw</span></p></li>
+          <li><span class="when">2023 – 2026</span><p class="what"><strong>Research team lead, Physical Interaction Robotics</strong><span class="d muted">IDEAS NCBR and the IDEAS Research Institute, Warsaw</span></p></li>
           <li><span class="when">2024</span><p class="what"><strong>ELLIS Society member · Science Robotics author · Adra Board of Directors</strong><span class="d muted">Elected to Adra's board in the robotics section on behalf of the research community — the first board member from Poland</span></p></li>
-          <li><span class="when">now</span><p class="what"><strong>Assistant Professor, PUT · Researcher, IDEAS Research Institute</strong><span class="d muted">Institute of Robotics and Machine Intelligence, Poznań, and IDEAS Research Institute, Warsaw</span></p></li>
+          <li><span class="when">2026</span><p class="what"><strong>Chief Technology Officer, Lute</strong><span class="d muted">Physical AI for mobile manipulation — robots that learn physical work from human demonstrations</span></p></li>
+          <li><span class="when">now</span><p class="what"><strong>CTO at Lute · Assistant Professor, PUT</strong><span class="d muted">Lute, Redwood City and Warsaw, and the Institute of Robotics and Machine Intelligence, Poznań</span></p></li>
         </ul>
       </div>
     </div>
@@ -645,20 +695,9 @@
     <div class="sec">
       <div>
         <h2>Contact</h2>
-        <p class="note">Students and collaborators welcome.</p>
+        <p class="note">Students, collaborators and partners — best reached through the profiles below.</p>
       </div>
-      <div class="contact">
-        <div>
-          <p class="k">Email</p>
-          <p><a href="mailto:Krzysztof.Walas@put.poznan.pl">Krzysztof.Walas@put.poznan.pl</a></p>
-          <p class="k">Office</p>
-          <address>
-            Institute of Robotics and Machine Intelligence<br>
-            Poznan University of Technology<br>
-            ul. Piotrowo 3A, 60-965 Poznań, Poland<br>
-            Building A8A, room 2.2b · +48 61 665 30 63
-          </address>
-        </div>
+      <div class="contact single">
         <div>
           <p class="k">Profiles</p>
           <ul>
