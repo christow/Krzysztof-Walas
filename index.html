@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Krzysztof Walas — Roboticist · Perception for Physical Interaction</title>
+  <meta name="description" content="Krzysztof Walas is a roboticist working on perception for physical interaction: legged robots that sense terrain by touch and manipulators that estimate the physical properties of what they hold. Assistant Professor at Poznan University of Technology and researcher at the IDEAS Research Institute.">
+  <meta property="og:title" content="Krzysztof Walas — Roboticist">
+  <meta property="og:description" content="Perception for physical interaction: legged locomotion, haptic terrain sensing, deformable-object manipulation.">
+  <meta property="og:type" content="profile">
+  <meta property="og:image" content="assets/krzysztof-walas.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --paper: #EDF0F3;   /* pale brushed aluminium */
+      --panel: #FFFFFF;
+      --line: #CFD6DD;
+      --ink: #0F1720;
+      --muted: #5A6675;
+      --cobalt: #1747C4;  /* links, accents */
+      --amber: #D99A00;   /* the signal trace and "now" markers only */
+      --amber-soft: rgba(217, 154, 0, 0.10);
+
+      --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+      --body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+      --wrap: 1120px;
+      --label-col: 220px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--cobalt); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    :focus-visible { outline: 2px solid var(--cobalt); outline-offset: 3px; border-radius: 2px; }
+    img { display: block; max-width: 100%; }
+
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- utility type ---------- */
+    .mono { font-family: var(--mono); }
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 8px; height: 8px;
+      background: var(--amber);
+      display: inline-block;
+    }
+
+    /* ---------- header ---------- */
+    .site-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+      flex-wrap: wrap;
+    }
+    .brand {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+    .brand:hover { text-decoration: none; }
+    .site-nav { display: flex; gap: 22px; flex-wrap: wrap; }
+    .site-nav a, .head-links a {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--ink);
+    }
+    .head-links { display: flex; gap: 18px; }
+    .head-links a { color: var(--muted); }
+    .head-links a:hover { color: var(--ink); }
+
+    /* ---------- hero ---------- */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 56px;
+      align-items: end;
+      padding: 64px 0 40px;
+    }
+    .hero h1 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-variation-settings: "opsz" 96, "wdth" 92;
+      font-size: clamp(2.6rem, 6.2vw, 4.7rem);
+      line-height: 0.98;
+      letter-spacing: -0.025em;
+      margin: 18px 0 22px;
+      text-wrap: balance;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--cobalt);
+    }
+    .lede {
+      font-size: 1.12rem;
+      max-width: 58ch;
+      margin: 0 0 28px;
+    }
+    .links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      padding: 10px 16px;
+      border: 1px solid var(--ink);
+      border-radius: 6px;
+      color: var(--ink);
+      background: transparent;
+      transition: background-color .15s ease, color .15s ease;
+    }
+    .btn:hover { background: var(--ink); color: var(--paper); text-decoration: none; }
+    .btn small { color: inherit; opacity: .65; margin-left: 6px; }
+
+    .portrait { margin: 0; }
+    .portrait .frame {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 10px;
+    }
+    .portrait img {
+      width: 100%;
+      aspect-ratio: 6 / 5;
+      object-fit: cover;
+      object-position: center top;
+      background: var(--paper);
+    }
+    .portrait figcaption {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    /* ---------- signature: foot-force trace ---------- */
+    .signal {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 0 10px;
+    }
+    .signal svg { width: 100%; height: auto; display: block; }
+    .signal .caption {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin: 8px 0 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .signal path.trace {
+      fill: none;
+      stroke-width: 1.4;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 2.4s cubic-bezier(.4,0,.2,1);
+    }
+    .signal path.trace.drawn { stroke-dashoffset: 0 !important; }
+    .signal .lane-label { font-family: var(--mono); fill: var(--muted); }
+    .signal .seg-label { font-family: var(--mono); fill: var(--ink); letter-spacing: .06em; }
+    .signal .grid { stroke: var(--line); stroke-width: 1; }
+    .signal .stance { fill: var(--amber-soft); }
+
+    /* ---------- "now" strip ---------- */
+    .now {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0 32px;
+      padding: 28px 0 8px;
+    }
+    .now div { border-top: 2px solid var(--amber); padding-top: 12px; }
+    .now .k {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 4px;
+    }
+    .now .v { margin: 0; font-size: 0.98rem; line-height: 1.45; }
+
+    /* ---------- sections: label column | content column ---------- */
+    section { padding: 60px 0; border-top: 1px solid var(--line); }
+    .sec {
+      display: grid;
+      grid-template-columns: var(--label-col) 1fr;
+      gap: 32px 48px;
+      align-items: start;
+    }
+    .sec h2 {
+      font-family: var(--display);
+      font-weight: 600;
+      font-variation-settings: "opsz" 40, "wdth" 96;
+      font-size: 1.55rem;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      margin: 0 0 10px;
+      position: sticky;
+      top: 24px;
+    }
+    .sec .note {
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 22ch;
+    }
+    .sec .note a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+    .sec .note a:hover { color: var(--ink); }
+
+    /* research cards */
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 22px 22px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card h3 {
+      font-family: var(--display);
+      font-weight: 600;
+      font-variation-settings: "opsz" 24, "wdth" 96;
+      font-size: 1.18rem;
+      line-height: 1.2;
+      margin: 0;
+      letter-spacing: -0.005em;
+    }
+    .card p { margin: 0; font-size: 0.97rem; }
+    .card .tags {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: auto;
+      padding-top: 6px;
+    }
+    .field {
+      margin: 20px 0 0;
+      font-size: 0.97rem;
+      color: var(--ink);
+      padding-left: 18px;
+      border-left: 2px solid var(--amber);
+    }
+
+    /* dated rows (projects, timeline) */
+    .rows { margin: 0; padding: 0; list-style: none; }
+    .rows li {
+      display: grid;
+      grid-template-columns: 120px 1fr 190px;
+      gap: 18px 24px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+    }
+    .rows li:first-child { padding-top: 0; }
+    .rows .when, .rows .meta {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .rows .meta { text-align: right; }
+    .rows .what { margin: 0; }
+    .rows .what strong { font-weight: 600; }
+    .rows .what .d { display: block; font-size: 0.95rem; color: var(--ink); margin-top: 2px; }
+    .rows .what .d.muted { color: var(--muted); }
+    .rows.two li { grid-template-columns: 120px 1fr; }
+
+    /* publications */
+    .pubs { margin: 0; padding: 0; list-style: none; }
+    .pubs li {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .pubs li:first-child { padding-top: 0; }
+    .pubs .year { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); padding-top: 4px; }
+    .pubs .t { margin: 0; font-weight: 600; line-height: 1.35; }
+    .pubs .t a { color: var(--ink); }
+    .pubs .t a:hover { color: var(--cobalt); }
+    .pubs .a { margin: 2px 0 0; font-size: 0.93rem; color: var(--ink); }
+    .pubs .v { margin: 2px 0 0; font-family: var(--mono); font-size: 0.76rem; color: var(--muted); }
+    .pubs .v a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+    .pubs .v a:hover { color: var(--ink); }
+
+    /* contact */
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .contact p { margin: 0 0 10px; }
+    .contact .k {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 6px;
+    }
+    .contact address { font-style: normal; }
+    .contact ul { list-style: none; margin: 0; padding: 0; }
+    .contact li { padding: 6px 0; border-bottom: 1px solid var(--line); }
+    .contact li:last-child { border-bottom: 0; }
+    .contact li a { font-family: var(--mono); font-size: 0.85rem; color: var(--ink); }
+    .contact li span { font-family: var(--mono); font-size: 0.76rem; color: var(--muted); margin-left: 10px; }
+
+    /* footer */
+    .site-foot {
+      border-top: 1px solid var(--line);
+      padding: 26px 0 40px;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .site-foot a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; gap: 36px; padding-top: 40px; }
+      .portrait { order: -1; max-width: 280px; }
+      .now { grid-template-columns: 1fr 1fr; gap: 20px 24px; }
+      .sec { grid-template-columns: 1fr; gap: 20px; }
+      .sec h2 { position: static; }
+      .sec .note { max-width: none; }
+      .cards { grid-template-columns: 1fr; }
+      .rows li { grid-template-columns: 96px 1fr; }
+      .rows .meta { grid-column: 2; text-align: left; }
+      .contact { grid-template-columns: 1fr; }
+      .head-links { display: none; }
+    }
+    @media (max-width: 520px) {
+      body { font-size: 16px; }
+      .now { grid-template-columns: 1fr; }
+      .rows li, .rows.two li { grid-template-columns: 1fr; gap: 4px; }
+      .pubs li { grid-template-columns: 1fr; gap: 2px; }
+      .site-nav { gap: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .signal path.trace { transition: none; }
+      .btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="wrap site-head">
+  <a class="brand" href="#top">Krzysztof Walas</a>
+  <nav class="site-nav" aria-label="Sections">
+    <a href="#research">Research</a>
+    <a href="#projects">Projects</a>
+    <a href="#publications">Publications</a>
+    <a href="#bio">Bio</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="head-links">
+    <a href="https://scholar.google.com/citations?user=0FZ0cZQAAAAJ&amp;hl=en" rel="me noopener" target="_blank">Scholar ↗</a>
+    <a href="https://www.linkedin.com/in/krzysztof-walas-850492a7/" rel="me noopener" target="_blank">LinkedIn ↗</a>
+    <a href="https://x.com/KrzysztofTWalas" rel="me noopener" target="_blank">X ↗</a>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+
+  <div class="hero">
+    <div>
+      <span class="eyebrow">Krzysztof Walas, PhD · Roboticist · Poznań &amp; Warsaw</span>
+      <h1>Perception for <em>physical interaction.</em></h1>
+      <p class="lede">
+        Krzysztof Walas builds robots that understand the physics of the world they touch:
+        legged machines that read the ground through their feet, and manipulators that
+        sense the stiffness, friction and shape of what they hold. He is an Assistant Professor
+        at Poznan University of Technology's Institute of Robotics and Machine Intelligence
+        and a researcher at the IDEAS Research Institute in Warsaw.
+      </p>
+      <div class="links">
+        <a class="btn" href="https://scholar.google.com/citations?user=0FZ0cZQAAAAJ&amp;hl=en" rel="me noopener" target="_blank">Google Scholar<small>↗</small></a>
+        <a class="btn" href="https://www.linkedin.com/in/krzysztof-walas-850492a7/" rel="me noopener" target="_blank">LinkedIn<small>↗</small></a>
+        <a class="btn" href="https://x.com/KrzysztofTWalas" rel="me noopener" target="_blank">X<small>↗</small></a>
+      </div>
+    </div>
+
+    <figure class="portrait">
+      <div class="frame">
+        <!-- Put your own photo at assets/krzysztof-walas.png. Until then the page falls back to the IDEAS NCBR press photo. -->
+        <img src="assets/krzysztof-walas.png"
+             onerror="this.onerror=null; this.src='https://ideas-ncbr.pl/wp-content/uploads/2024/02/Krzysztof_Walas_zdjecie_2_c.png';"
+             alt="Portrait of Krzysztof Walas" width="480" height="399">
+      </div>
+      <figcaption><span>Krzysztof Walas</span><span>Photo: IDEAS NCBR</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="signal" aria-label="Illustration: a synthetic foot-force signal of a walking robot crossing three different terrains">
+    <svg id="trace" viewBox="0 0 1200 196" preserveAspectRatio="none" role="img" aria-hidden="true"></svg>
+    <p class="caption">
+      <span>Synthetic foot-force trace of a walking robot crossing three terrains — the kind of signal a legged robot can use to tell surfaces apart by touch.</span>
+      <span>stance phases shaded</span>
+    </p>
+  </div>
+
+  <div class="now" aria-label="Current roles">
+    <div><p class="k">Poznań · now</p><p class="v">Assistant Professor, Institute of Robotics and Machine Intelligence, Poznan University of Technology</p></div>
+    <div><p class="k">Warsaw · now</p><p class="v">Researcher, IDEAS Research Institute, Warsaw; led the Physical Interaction Robotics team at IDEAS NCBR</p></div>
+    <div><p class="k">Adra · since June 2024</p><p class="v">Board of Directors, Adra — the AI, Data and Robotics Association (robotics, research community)</p></div>
+    <div><p class="k">ELLIS · since Feb 2024</p><p class="v">Member of the ELLIS Society, the European Laboratory for Learning and Intelligent Systems</p></div>
+  </div>
+
+  <section id="research">
+    <div class="sec">
+      <div>
+        <h2>Research</h2>
+        <p class="note">Perception applied to two kinds of contact: walking and grasping. Team page at <a href="https://robotics.put.poznan.pl/perception-for-physical-interaction/" target="_blank" rel="noopener">PUT robotics</a>.</p>
+      </div>
+      <div>
+        <div class="cards">
+          <article class="card">
+            <h3>Haptic terrain perception for legged robots</h3>
+            <p>Force and torque signals from a robot's feet carry enough information to recognise the ground it is standing on. The team's transformer- and state-space-based classifiers (HAPTR, HAPTR2, HAPmamba) are small and fast enough to run on board and are benchmarked on public datasets such as PUTany and QCAT.</p>
+            <p class="tags">legged robots · time-series learning · ANYmal</p>
+          </article>
+          <article class="card">
+            <h3>Sensing physical parameters through interaction</h3>
+            <p>Stiffness, damping and friction are hard to see but easy to feel. This line of work estimates such parameters from direct contact — for example regressing an object's stiffness from inertial sensors on the fingers of a soft gripper — and asks how far vision alone can get.</p>
+            <p class="tags">soft grippers · IMUs · parameter estimation</p>
+          </article>
+          <article class="card">
+            <h3>Manipulating deformable linear objects</h3>
+            <p>Cables, wires and hoses change shape as you handle them. Model-based methods that estimate the object's parameters online, and calibration-free bimanual control, make routing and fitting tasks feasible for dual-arm robots in manufacturing — work that started in the REMODEL project.</p>
+            <p class="tags">deformable objects · bimanual · industrial robotics</p>
+          </article>
+          <article class="card">
+            <h3>Learning agile legged locomotion with active perception</h3>
+            <p>Quadrupeds that switch between gaits, use whole-body contact and an actuated spine, and sense the world through their actuators rather than only through cameras. This is the focus of INTENTION, a joint project with the Intelligent Autonomous Systems group at TU Darmstadt.</p>
+            <p class="tags">reinforcement learning · actuated spine · proprioception</p>
+          </article>
+        </div>
+        <p class="field">Much of this work leaves the lab: legged robots inspecting mines and sewers in the THING project, a quadruped taken into an ice cave, and LunarLeaper, a mission concept for exploring the lunar subsurface with a small legged robot.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="sec">
+      <div>
+        <h2>Projects</h2>
+        <p class="note">Grants where he is or was principal investigator on the Poznan side.</p>
+      </div>
+      <ul class="rows">
+        <li>
+          <span class="when">ongoing</span>
+          <p class="what"><strong><a href="https://intention.put.poznan.pl/" target="_blank" rel="noopener">INTENTION</a></strong><span class="d">learnINg versaTile lEgged locomotioN wiTh actIve perceptiON — agile quadruped locomotion with non-visual sensing and a flexible spine, together with Jan Peters' group at TU Darmstadt.</span></p>
+          <span class="meta">NCN–DFG grant<br>PI at PUT</span>
+        </li>
+        <li>
+          <span class="when">2019 – 2023</span>
+          <p class="what"><strong><a href="https://cordis.europa.eu/project/id/870133" target="_blank" rel="noopener">REMODEL</a></strong><span class="d">Robotic tEchnologies for the Manipulation of cOmplex DeformablE Linear objects — dual-arm handling of wires and cables in manufacturing, coordinated by the University of Bologna with partners including Volkswagen Poznań.</span></p>
+          <span class="meta">Horizon 2020<br>PI at PUT</span>
+        </li>
+        <li>
+          <span class="when">2018 – 2021</span>
+          <p class="what"><strong><a href="https://cordis.europa.eu/project/id/780883" target="_blank" rel="noopener">THING</a></strong><span class="d">subTerranean Haptic INvestiGator — haptic perception and active exploration for legged robots, tested in mines and sewers with the ANYmal quadruped.</span></p>
+          <span class="meta">Horizon 2020<br>PI at PUT</span>
+        </li>
+        <li>
+          <span class="when">2017 – 2020</span>
+          <p class="what"><strong>Perception and control for robotic manipulation of elastic objects</strong><span class="d">LIDER programme grant from Poland's National Centre for Research and Development.</span></p>
+          <span class="meta">NCBR LIDER<br>PI</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="publications">
+    <div class="sec">
+      <div>
+        <h2>Selected publications</h2>
+        <p class="note">Full list on <a href="https://scholar.google.com/citations?user=0FZ0cZQAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a> and <a href="https://orcid.org/0000-0002-2800-2716" target="_blank" rel="noopener">ORCID</a>.</p>
+      </div>
+      <ol class="pubs">
+        <li>
+          <span class="year">2026</span>
+          <div>
+            <p class="t">Evaluation of an Actuated Spine in Agile Quadruped Locomotion</p>
+            <p class="a">N. Bohlinger, P. Kicki, D. Tateo et al., with J. Peters and K. Walas</p>
+            <p class="v">Preprint</p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2025</span>
+          <div>
+            <p class="t">LunarLeaper — A mission concept to explore the lunar subsurface with a small-scale legged robot</p>
+            <p class="a">H. Kolvenbach, A. Mittelholz, S. C. Stähler, P. Arm, V. T. Bickel, … K. Walas, … M. Hutter</p>
+            <p class="v">Acta Astronautica 240, 63–75</p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2024</span>
+          <div>
+            <p class="t"><a href="https://doi.org/10.1126/scirobotics.adp1956" target="_blank" rel="noopener">Legged robots beyond bioinspiration</a></p>
+            <p class="a">K. Walas</p>
+            <p class="v">Science Robotics 9(89), eadp1956 · <a href="https://doi.org/10.1126/scirobotics.adp1956" target="_blank" rel="noopener">doi:10.1126/scirobotics.adp1956</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2024</span>
+          <div>
+            <p class="t">Deformable Linear Objects Manipulation With Online Model Parameters Estimation</p>
+            <p class="a">A. Caporali, P. Kicki, K. Galassi, R. Zanella, K. Walas, G. Palli</p>
+            <p class="v">IEEE Robotics and Automation Letters 9(3), 2598–2605</p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2024</span>
+          <div>
+            <p class="t">Calibrationless Bimanual Deformable Linear Object Manipulation With Recursive Least Squares Filter</p>
+            <p class="a">A. Szymko, P. Kicki, K. Walas</p>
+            <p class="v">IEEE Access 12, 126707–126716</p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2024</span>
+          <div>
+            <p class="t"><a href="https://doi.org/10.1007/978-3-031-70722-3_6" target="_blank" rel="noopener">HAPmamba: Linear-Time Sequence Modeling for Terrain Classification by Legged Robots</a></p>
+            <p class="a">M. Wiliński, M. Łysakowski, K. Walas</p>
+            <p class="v">Springer · <a href="https://doi.org/10.1007/978-3-031-70722-3_6" target="_blank" rel="noopener">doi:10.1007/978-3-031-70722-3_6</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2022</span>
+          <div>
+            <p class="t"><a href="https://doi.org/10.1016/j.robot.2022.104236" target="_blank" rel="noopener">HAPTR2: Improved Haptic Transformer for legged robots' terrain classification</a></p>
+            <p class="a">M. Bednarek, M. R. Nowicki, K. Walas</p>
+            <p class="v">Robotics and Autonomous Systems 158, 104236 · <a href="https://doi.org/10.1016/j.robot.2022.104236" target="_blank" rel="noopener">doi:10.1016/j.robot.2022.104236</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2021</span>
+          <div>
+            <p class="t">Fast haptic terrain classification for legged robots using transformer</p>
+            <p class="a">M. Bednarek, M. Łysakowski, J. Bednarek, M. R. Nowicki, K. Walas</p>
+            <p class="v">European Conference on Mobile Robots (ECMR)</p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2021</span>
+          <div>
+            <p class="t"><a href="https://doi.org/10.3390/rs13050965" target="_blank" rel="noopener">Autonomous, Onboard Vision-Based Trash and Litter Detection in Low Altitude Aerial Images Collected by an Unmanned Aerial Vehicle</a></p>
+            <p class="a">M. Kraft, M. Piechocki, B. Ptak, K. Walas</p>
+            <p class="v">Remote Sensing 13(5), 965 · <a href="https://doi.org/10.3390/rs13050965" target="_blank" rel="noopener">doi:10.3390/rs13050965</a> · UAVVaste dataset</p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2019</span>
+          <div>
+            <p class="t">What am I touching? Learning to classify terrain via haptic sensing</p>
+            <p class="a">J. Bednarek, M. Bednarek, L. Wellhausen, M. Hutter, K. Walas</p>
+            <p class="v">IEEE International Conference on Robotics and Automation (ICRA), 7187–7193</p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2019</span>
+          <div>
+            <p class="t">Robotic Touch: Classification of Materials for Manipulation and Walking</p>
+            <p class="a">J. Bednarek, M. Bednarek, P. Kicki, K. Walas</p>
+            <p class="v">IEEE International Conference on Soft Robotics (RoboSoft), 527–533</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="bio">
+    <div class="sec">
+      <div>
+        <h2>Bio</h2>
+        <p class="note">From hexapods in Poznań to boards in Brussels.</p>
+      </div>
+      <div>
+        <p style="margin:0 0 26px; max-width: 64ch;">
+          Krzysztof Walas graduated from Poznan University of Technology with an MSc in Automatic Control and Robotics
+          and received his PhD in Robotics there in 2012, with honours, for a thesis on legged-robot locomotion in
+          structured environments — work that grew up alongside the university's Messor walking robots. He then joined the
+          Intelligent Robotics Laboratory at the University of Birmingham's School of Computer Science as a postdoctoral
+          researcher, working on object categorisation and pose estimation from 3D data, before returning to Poznań to lead
+          the Perception for Physical Interaction team.
+        </p>
+        <ul class="rows two">
+          <li><span class="when">2007 – 2012</span><p class="what"><strong>Research and teaching assistant</strong><span class="d muted">Institute of Control and Information Engineering, Poznan University of Technology</span></p></li>
+          <li><span class="when">2012</span><p class="what"><strong>PhD in Robotics, with honours</strong><span class="d muted">Poznan University of Technology — legged-robot locomotion in structured environments</span></p></li>
+          <li><span class="when">2014</span><p class="what"><strong>Postdoctoral research associate</strong><span class="d muted">Intelligent Robotics Lab, School of Computer Science, University of Birmingham</span></p></li>
+          <li><span class="when">2017</span><p class="what"><strong>LIDER grant</strong><span class="d muted">National Centre for Research and Development (NCBR), Poland</span></p></li>
+          <li><span class="when">2018 – 2023</span><p class="what"><strong>Principal investigator at PUT in two Horizon 2020 projects</strong><span class="d muted">THING (subterranean legged locomotion) and REMODEL (deformable-object manipulation)</span></p></li>
+          <li><span class="when">2023</span><p class="what"><strong>Research team lead, Physical Interaction Robotics</strong><span class="d muted">IDEAS NCBR, Warsaw</span></p></li>
+          <li><span class="when">2024</span><p class="what"><strong>ELLIS Society member · Science Robotics author · Adra Board of Directors</strong><span class="d muted">Elected to Adra's board in the robotics section on behalf of the research community — the first board member from Poland</span></p></li>
+          <li><span class="when">now</span><p class="what"><strong>Assistant Professor, PUT · Researcher, IDEAS Research Institute</strong><span class="d muted">Institute of Robotics and Machine Intelligence, Poznań, and IDEAS Research Institute, Warsaw</span></p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="sec">
+      <div>
+        <h2>Contact</h2>
+        <p class="note">Students and collaborators welcome.</p>
+      </div>
+      <div class="contact">
+        <div>
+          <p class="k">Email</p>
+          <p><a href="mailto:Krzysztof.Walas@put.poznan.pl">Krzysztof.Walas@put.poznan.pl</a></p>
+          <p class="k">Office</p>
+          <address>
+            Institute of Robotics and Machine Intelligence<br>
+            Poznan University of Technology<br>
+            ul. Piotrowo 3A, 60-965 Poznań, Poland<br>
+            Building A8A, room 2.2b · +48 61 665 30 63
+          </address>
+        </div>
+        <div>
+          <p class="k">Profiles</p>
+          <ul>
+            <li><a href="https://scholar.google.com/citations?user=0FZ0cZQAAAAJ&amp;hl=en" target="_blank" rel="me noopener">Google Scholar</a><span>publications &amp; citations</span></li>
+            <li><a href="https://www.linkedin.com/in/krzysztof-walas-850492a7/" target="_blank" rel="me noopener">LinkedIn</a><span>news &amp; openings</span></li>
+            <li><a href="https://x.com/KrzysztofTWalas" target="_blank" rel="me noopener">X · @KrzysztofTWalas</a><span>robots that understand physics</span></li>
+            <li><a href="https://orcid.org/0000-0002-2800-2716" target="_blank" rel="me noopener">ORCID</a><span>0000-0002-2800-2716</span></li>
+            <li><a href="https://www.researchgate.net/profile/Krzysztof-Walas" target="_blank" rel="me noopener">ResearchGate</a><span>lab &amp; preprints</span></li>
+            <li><a href="https://ieeexplore.ieee.org/author/37688621800" target="_blank" rel="me noopener">IEEE Xplore</a><span>author page</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap site-foot">
+  <span>© 2026 Krzysztof Walas · Last updated August 2026</span>
+  <span>Static page, no tracking · <a href="https://ideas-ncbr.pl/en/krzysztof-walas-joins-ellis-society/" target="_blank" rel="noopener">photo credit</a></span>
+</footer>
+
+<script>
+(function () {
+  // Signature: a deterministic, synthetic foot-force trace (Fz, Fx, Fy) of a walking robot
+  // crossing three terrains. It is an illustration, not recorded data.
+  var svg = document.getElementById('trace');
+  if (!svg) return;
+
+  var narrow = window.innerWidth < 640;
+  var W = narrow ? 640 : 1200, LANE = 56, TOP = 8, N = W / 2;
+  var LABEL = narrow ? 17 : 11;           // viewBox units, so labels stay legible on phones
+  var PERIOD_SCALE = narrow ? 0.66 : 1;   // keep roughly a dozen strides visible at any width
+  svg.setAttribute('viewBox', '0 0 ' + W + ' 196');
+  var lanes = [
+    { key: 'Fz', color: 'var(--amber)',  scale: 0.78, base: 0.88 },
+    { key: 'Fx', color: 'var(--cobalt)', scale: 0.42, base: 0.50 },
+    { key: 'Fy', color: '#8A94A0',       scale: 0.90, base: 0.50 }
+  ];
+  var terrains = [
+    { name: 'hard',     peak: 1.00, width: 0.11, noise: 0.030, period: 60 },
+    { name: 'soft',     peak: 0.70, width: 0.18, noise: 0.045, period: 68 },
+    { name: 'granular', peak: 0.88, width: 0.13, noise: 0.120, period: 63 }
+  ];
+
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = a + 0x6D2B79F5 | 0;
+      var t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  var rnd = mulberry32(2012);
+
+  // Build strides: each stride belongs to the terrain of the segment it starts in.
+  var strides = [], i = 0;
+  while (i < N) {
+    var seg = terrains[Math.min(2, Math.floor(i / (N / 3)))];
+    var period = Math.round((seg.period + (rnd() - 0.5) * 10) * PERIOD_SCALE);
+    strides.push({ start: i, period: period, t: seg });
+    i += period;
+  }
+
+  var fz = [], fx = [], fy = [], stanceRects = [];
+  strides.forEach(function (s) {
+    var stanceEnd = s.start + Math.round(s.period * 0.62);
+    stanceRects.push([s.start, Math.min(stanceEnd, N)]);
+    for (var k = s.start; k < s.start + s.period && k < N; k++) {
+      var ph = (k - s.start) / s.period, t = s.t, z, x, y;
+      if (ph < 0.62) {
+        var u = ph / 0.62;                       // 0..1 through stance
+        var g1 = Math.exp(-Math.pow((u - 0.24) / t.width, 2));
+        var g2 = Math.exp(-Math.pow((u - 0.78) / t.width, 2));
+        z = t.peak * (0.55 * g1 + 0.62 * g2 + 0.30 * Math.sin(Math.PI * u));
+        x = -0.32 * t.peak * Math.sin(2 * Math.PI * u);
+        y = 0.10 * Math.sin(Math.PI * u) + 0.06 * Math.sin(3 * Math.PI * u);
+      } else {
+        var v = (ph - 0.62) / 0.38;              // 0..1 through swing
+        z = 0.03 * Math.sin(Math.PI * v);
+        x = 0.05 * Math.sin(2 * Math.PI * v);
+        y = 0.04 * Math.sin(2 * Math.PI * v);
+      }
+      z += (rnd() - 0.5) * t.noise * 2;
+      x += (rnd() - 0.5) * t.noise * 1.5;
+      y += (rnd() - 0.5) * t.noise;
+      fz.push(z); fx.push(x); fy.push(y);
+    }
+  });
+
+  function sx(k) { return (k / (N - 1)) * W; }
+  function path(arr, lane, idx) {
+    var top = TOP + idx * LANE, d = '';
+    for (var k = 0; k < arr.length; k++) {
+      var yy = top + LANE * lane.base - arr[k] * LANE * lane.scale;
+      d += (k ? 'L' : 'M') + sx(k).toFixed(1) + ' ' + yy.toFixed(1);
+    }
+    return d;
+  }
+
+  var out = '';
+  // stance shading
+  stanceRects.forEach(function (r) {
+    out += '<rect class="stance" x="' + sx(r[0]).toFixed(1) + '" y="' + TOP + '" width="' +
+           (sx(r[1]) - sx(r[0])).toFixed(1) + '" height="' + (LANE * 3) + '"/>';
+  });
+  // lane separators + labels
+  for (var l = 0; l <= 3; l++) {
+    var yline = TOP + l * LANE;
+    out += '<line class="grid" x1="0" y1="' + yline + '" x2="' + W + '" y2="' + yline + '"/>';
+  }
+  lanes.forEach(function (lane, idx) {
+    out += '<text class="lane-label" font-size="' + LABEL + '" x="8" y="' + (TOP + idx * LANE + LABEL + 3) + '">' + lane.key + '</text>';
+  });
+  // terrain segment labels along the bottom
+  terrains.forEach(function (t, idx) {
+    var xx = idx * (W / 3) + 8;
+    out += '<line class="grid" x1="' + (idx * W / 3).toFixed(1) + '" y1="' + (TOP + LANE * 3) + '" x2="' +
+           (idx * W / 3).toFixed(1) + '" y2="' + (TOP + LANE * 3 + 10) + '"/>';
+    out += '<text class="seg-label" font-size="' + LABEL + '" x="' + xx + '" y="' + (TOP + LANE * 3 + LABEL + 9) + '">' + t.name.toUpperCase() + '</text>';
+  });
+  // traces
+  var series = [fz, fx, fy];
+  lanes.forEach(function (lane, idx) {
+    out += '<path class="trace" data-lane="' + idx + '" stroke="' + lane.color + '" d="' + path(series[idx], lane, idx) + '"/>';
+  });
+  svg.innerHTML = out;
+
+  // Draw-on animation, skipped for reduced-motion users.
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var paths = svg.querySelectorAll('path.trace');
+  if (reduce) return;
+  Array.prototype.forEach.call(paths, function (p, idx) {
+    var len = p.getTotalLength();
+    p.style.strokeDasharray = len;
+    p.style.strokeDashoffset = len;
+    p.style.transitionDelay = (idx * 0.25) + 's';
+  });
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      Array.prototype.forEach.call(paths, function (p) { p.classList.add('drawn'); });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
