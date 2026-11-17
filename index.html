@@ -1,848 +1,447 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Krzysztof Walas — CTO at Lute · Physical AI and Robotics</title>
-  <meta name="description" content="Krzysztof Walas is Chief Technology Officer at Lute, building mobile robots that learn physical work from human demonstrations and go into real factories and shop floors. Roboticist, Assistant Professor at Poznan University of Technology, ELLIS Society member and Adra board member.">
-  <meta property="og:title" content="Krzysztof Walas — CTO at Lute">
-  <meta property="og:description" content="Physical AI in production: robots that learn from human demonstrations, deployed on factory floors and in retail.">
-  <meta property="og:type" content="profile">
-  <meta property="og:image" content="assets/krzysztof-walas.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Krzysztof Walas | Co-founder and CTO of Lute, roboticist</title>
+<meta name="description" content="Krzysztof Walas is co-founder and CTO of Lute and a roboticist at Poznań University of Technology. He works on physical interaction: haptic perception, legged locomotion and robot manipulation.">
+<meta name="author" content="Krzysztof Walas">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- When the site moves to its own domain, replace https://christow.github.io/Krzysztof-Walas/ everywhere in this file (canonical, og, JSON-LD) and in sitemap.xml. -->
+<link rel="canonical" href="https://christow.github.io/Krzysztof-Walas/">
 
-  <style>
-    :root {
-      --paper: #EDF0F3;   /* pale brushed aluminium */
-      --panel: #FFFFFF;
-      --line: #CFD6DD;
-      --ink: #0F1720;
-      --muted: #5A6675;
-      --cobalt: #1747C4;  /* links, accents */
-      --amber: #D99A00;   /* the signal trace and "now" markers only */
-      --amber-soft: rgba(217, 154, 0, 0.10);
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Krzysztof Walas">
+<meta property="og:title" content="Krzysztof Walas, co-founder and CTO of Lute">
+<meta property="og:description" content="Roboticist working on physical interaction: haptic perception, legged locomotion and robot manipulation.">
+<meta property="og:url" content="https://christow.github.io/Krzysztof-Walas/">
+<meta property="og:image" content="https://christow.github.io/Krzysztof-Walas/assets/social-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="profile:first_name" content="Krzysztof">
+<meta property="profile:last_name" content="Walas">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@KrzysztofTWalas">
+<meta name="twitter:creator" content="@KrzysztofTWalas">
 
-      --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
-      --body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
-      --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23004D78'/%3E%3Ctext x='32' y='42' font-family='Helvetica,Arial,sans-serif' font-size='28' font-weight='600' fill='%23FEFEFC' text-anchor='middle'%3EKW%3C/text%3E%3C/svg%3E">
 
-      --wrap: 1120px;
-      --label-col: 220px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: var(--body);
-      font-size: 17px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: var(--cobalt); text-decoration: none; }
-    a:hover { text-decoration: underline; text-underline-offset: 3px; }
-    :focus-visible { outline: 2px solid var(--cobalt); outline-offset: 3px; border-radius: 2px; }
-    img { display: block; max-width: 100%; }
-
-    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
-
-    /* ---------- utility type ---------- */
-    .mono { font-family: var(--mono); }
-    .eyebrow {
-      font-family: var(--mono);
-      font-size: 0.76rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .eyebrow::before {
-      content: "";
-      width: 8px; height: 8px;
-      background: var(--amber);
-      display: inline-block;
-    }
-
-    /* ---------- header ---------- */
-    .site-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 22px 0;
-      border-bottom: 1px solid var(--line);
-      flex-wrap: wrap;
-    }
-    .brand {
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      color: var(--ink);
-      letter-spacing: 0.02em;
-    }
-    .brand:hover { text-decoration: none; }
-    .site-nav { display: flex; gap: 22px; flex-wrap: wrap; }
-    .site-nav a, .head-links a {
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      color: var(--ink);
-    }
-    .head-links { display: flex; gap: 18px; }
-    .head-links a { color: var(--muted); }
-    .head-links a:hover { color: var(--ink); }
-
-    /* ---------- hero ---------- */
-    .hero {
-      display: grid;
-      grid-template-columns: 1.35fr 1fr;
-      gap: 56px;
-      align-items: end;
-      padding: 64px 0 40px;
-    }
-    .hero h1 {
-      font-family: var(--display);
-      font-weight: 700;
-      font-variation-settings: "opsz" 96, "wdth" 92;
-      font-size: clamp(2.6rem, 6.2vw, 4.7rem);
-      line-height: 0.98;
-      letter-spacing: -0.025em;
-      margin: 18px 0 22px;
-      text-wrap: balance;
-    }
-    .hero h1 em {
-      font-style: normal;
-      color: var(--cobalt);
-    }
-    .lede {
-      font-size: 1.12rem;
-      max-width: 58ch;
-      margin: 0 0 28px;
-    }
-    .links { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn {
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      padding: 10px 16px;
-      border: 1px solid var(--ink);
-      border-radius: 6px;
-      color: var(--ink);
-      background: transparent;
-      transition: background-color .15s ease, color .15s ease;
-    }
-    .btn:hover { background: var(--ink); color: var(--paper); text-decoration: none; }
-    .btn small { color: inherit; opacity: .65; margin-left: 6px; }
-
-    .portrait { margin: 0; }
-    .portrait .frame {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      padding: 10px;
-    }
-    .portrait img {
-      width: 100%;
-      aspect-ratio: 6 / 5;
-      object-fit: cover;
-      object-position: center top;
-      background: var(--paper);
-    }
-    .portrait figcaption {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-      margin-top: 10px;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    /* ---------- signature: foot-force trace ---------- */
-    .signal {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      padding: 14px 0 10px;
-    }
-    .signal svg { width: 100%; height: auto; display: block; }
-    .signal .caption {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-      margin: 8px 0 0;
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .signal path.trace {
-      fill: none;
-      stroke-width: 1.4;
-      stroke-linejoin: round;
-      stroke-linecap: round;
-      transition: stroke-dashoffset 2.4s cubic-bezier(.4,0,.2,1);
-    }
-    .signal path.trace.drawn { stroke-dashoffset: 0 !important; }
-    .signal .lane-label { font-family: var(--mono); fill: var(--muted); }
-    .signal .seg-label { font-family: var(--mono); fill: var(--ink); letter-spacing: .06em; }
-    .signal .grid { stroke: var(--line); stroke-width: 1; }
-    .signal .stance { fill: var(--amber-soft); }
-
-    /* ---------- "now" strip ---------- */
-    .now {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0 32px;
-      padding: 28px 0 8px;
-    }
-    .now div { border-top: 2px solid var(--amber); padding-top: 12px; }
-    .now .k {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin: 0 0 4px;
-    }
-    .now .v { margin: 0; font-size: 0.98rem; line-height: 1.45; }
-
-    /* ---------- sections: label column | content column ---------- */
-    section { padding: 60px 0; border-top: 1px solid var(--line); }
-    .sec {
-      display: grid;
-      grid-template-columns: var(--label-col) 1fr;
-      gap: 32px 48px;
-      align-items: start;
-    }
-    .sec h2 {
-      font-family: var(--display);
-      font-weight: 600;
-      font-variation-settings: "opsz" 40, "wdth" 96;
-      font-size: 1.55rem;
-      letter-spacing: -0.01em;
-      line-height: 1.15;
-      margin: 0 0 10px;
-      position: sticky;
-      top: 24px;
-    }
-    .sec .note {
-      font-family: var(--mono);
-      font-size: 0.74rem;
-      color: var(--muted);
-      line-height: 1.6;
-      max-width: 22ch;
-    }
-    .sec .note a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
-    .sec .note a:hover { color: var(--ink); }
-
-    /* research cards */
-    .cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      padding: 22px 22px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .card h3 {
-      font-family: var(--display);
-      font-weight: 600;
-      font-variation-settings: "opsz" 24, "wdth" 96;
-      font-size: 1.18rem;
-      line-height: 1.2;
-      margin: 0;
-      letter-spacing: -0.005em;
-    }
-    .card p { margin: 0; font-size: 0.97rem; }
-    .card .tags {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-      margin-top: auto;
-      padding-top: 6px;
-    }
-    .field {
-      margin: 20px 0 0;
-      font-size: 0.97rem;
-      color: var(--ink);
-      padding-left: 18px;
-      border-left: 2px solid var(--amber);
-    }
-
-    /* dated rows (projects, timeline) */
-    .rows { margin: 0; padding: 0; list-style: none; }
-    .rows li {
-      display: grid;
-      grid-template-columns: 120px 1fr 190px;
-      gap: 18px 24px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--line);
-      align-items: baseline;
-    }
-    .rows li:first-child { padding-top: 0; }
-    .rows .when, .rows .meta {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-    .rows .meta { text-align: right; }
-    .rows .what { margin: 0; }
-    .rows .what strong { font-weight: 600; }
-    .rows .what .d { display: block; font-size: 0.95rem; color: var(--ink); margin-top: 2px; }
-    .rows .what .d.muted { color: var(--muted); }
-    .rows.two li { grid-template-columns: 120px 1fr; }
-
-    /* publications */
-    .pubs { margin: 0; padding: 0; list-style: none; }
-    .pubs li {
-      display: grid;
-      grid-template-columns: 64px 1fr;
-      gap: 16px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--line);
-    }
-    .pubs li:first-child { padding-top: 0; }
-    .pubs .year { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); padding-top: 4px; }
-    .pubs .t { margin: 0; font-weight: 600; line-height: 1.35; }
-    .pubs .t a { color: var(--ink); }
-    .pubs .t a:hover { color: var(--cobalt); }
-    .pubs .a { margin: 2px 0 0; font-size: 0.93rem; color: var(--ink); }
-    .pubs .v { margin: 2px 0 0; font-family: var(--mono); font-size: 0.76rem; color: var(--muted); }
-    .pubs .v a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
-    .pubs .v a:hover { color: var(--ink); }
-
-    /* contact */
-    .contact {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
-    .contact.single { grid-template-columns: 1fr; max-width: 620px; }
-    .contact p { margin: 0 0 10px; }
-    .contact .k {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin: 0 0 6px;
-    }
-    .contact address { font-style: normal; }
-    .contact ul { list-style: none; margin: 0; padding: 0; }
-    .contact li { padding: 6px 0; border-bottom: 1px solid var(--line); }
-    .contact li:last-child { border-bottom: 0; }
-    .contact li a { font-family: var(--mono); font-size: 0.85rem; color: var(--ink); }
-    .contact li span { font-family: var(--mono); font-size: 0.76rem; color: var(--muted); margin-left: 10px; }
-
-    /* footer */
-    .site-foot {
-      border-top: 1px solid var(--line);
-      padding: 26px 0 40px;
-      font-family: var(--mono);
-      font-size: 0.74rem;
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .site-foot a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
-
-    /* ---------- responsive ---------- */
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; gap: 36px; padding-top: 40px; }
-      .portrait { order: -1; max-width: 280px; }
-      .now { grid-template-columns: 1fr 1fr; gap: 20px 24px; }
-      .sec { grid-template-columns: 1fr; gap: 20px; }
-      .sec h2 { position: static; }
-      .sec .note { max-width: none; }
-      .cards { grid-template-columns: 1fr; }
-      .rows li { grid-template-columns: 96px 1fr; }
-      .rows .meta { grid-column: 2; text-align: left; }
-      .contact { grid-template-columns: 1fr; }
-      .head-links { display: none; }
-    }
-    @media (max-width: 520px) {
-      body { font-size: 16px; }
-      .now { grid-template-columns: 1fr; }
-      .rows li, .rows.two li { grid-template-columns: 1fr; gap: 4px; }
-      .pubs li { grid-template-columns: 1fr; gap: 2px; }
-      .site-nav { gap: 14px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .signal path.trace { transition: none; }
-      .btn { transition: none; }
-    }
-  </style>
-</head>
-<body>
-
-<header class="wrap site-head">
-  <a class="brand" href="#top">Krzysztof Walas</a>
-  <nav class="site-nav" aria-label="Sections">
-    <a href="#lute">Lute</a>
-    <a href="#research">Research</a>
-    <a href="#projects">Projects</a>
-    <a href="#publications">Publications</a>
-    <a href="#bio">Bio</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <div class="head-links">
-    <a href="https://scholar.google.com/citations?user=0FZ0cZQAAAAJ&amp;hl=en" rel="me noopener" target="_blank">Scholar ↗</a>
-    <a href="https://www.linkedin.com/in/krzysztof-walas-850492a7/" rel="me noopener" target="_blank">LinkedIn ↗</a>
-    <a href="https://x.com/KrzysztofTWalas" rel="me noopener" target="_blank">X ↗</a>
-  </div>
-</header>
-
-<main id="top" class="wrap">
-
-  <div class="hero">
-    <div>
-      <span class="eyebrow">Krzysztof Walas, PhD · CTO at Lute</span>
-      <h1>Physical AI that <em>leaves the lab.</em></h1>
-      <p class="lede">
-        Krzysztof Walas is Chief Technology Officer at
-        <a href="https://lute.one" target="_blank" rel="noopener">Lute</a>, building mobile robots
-        that learn physical work from human demonstrations and take it into real factories,
-        warehouses and shop floors. Nearly two decades of research into how machines perceive
-        contact — how a foot reads the ground, how a gripper feels what it holds — now pointed at
-        a harder test than a benchmark: doing useful work in buildings full of people. He remains
-        an Assistant Professor at Poznan University of Technology.
-      </p>
-      <div class="links">
-        <a class="btn" href="https://lute.one" rel="noopener" target="_blank">Lute<small>↗</small></a>
-        <a class="btn" href="https://scholar.google.com/citations?user=0FZ0cZQAAAAJ&amp;hl=en" rel="me noopener" target="_blank">Google Scholar<small>↗</small></a>
-        <a class="btn" href="https://www.linkedin.com/in/krzysztof-walas-850492a7/" rel="me noopener" target="_blank">LinkedIn<small>↗</small></a>
-        <a class="btn" href="https://x.com/KrzysztofTWalas" rel="me noopener" target="_blank">X<small>↗</small></a>
-      </div>
-    </div>
-
-    <figure class="portrait">
-      <div class="frame">
-        <!-- Put your own photo at assets/krzysztof-walas.png. Until then the page falls back to the IDEAS NCBR press photo. -->
-        <img src="assets/krzysztof-walas.png"
-             onerror="this.onerror=null; this.src='https://ideas-ncbr.pl/wp-content/uploads/2024/02/Krzysztof_Walas_zdjecie_2_c.png';"
-             alt="Portrait of Krzysztof Walas" width="480" height="399">
-      </div>
-      <figcaption><span>Krzysztof Walas</span></figcaption>
-    </figure>
-  </div>
-
-  <div class="signal" aria-label="Illustration: a synthetic foot-force signal of a walking robot crossing three different terrains">
-    <svg id="trace" viewBox="0 0 1200 196" preserveAspectRatio="none" role="img" aria-hidden="true"></svg>
-    <p class="caption">
-      <span>Synthetic foot-force trace of a walking robot crossing three terrains — the kind of signal a legged robot can use to tell surfaces apart by touch.</span>
-      <span>stance phases shaded</span>
-    </p>
-  </div>
-
-  <div class="now" aria-label="Current roles">
-    <div><p class="k">Lute · since 2026</p><p class="v">Chief Technology Officer, <a href="https://lute.one" target="_blank" rel="noopener">Lute</a> — physical AI for mobile manipulation; Redwood City &amp; Warsaw</p></div>
-    <div><p class="k">Poznań · now</p><p class="v">Assistant Professor, Institute of Robotics and Machine Intelligence, Poznan University of Technology</p></div>
-    <div><p class="k">Adra · since June 2024</p><p class="v">Board of Directors, Adra — the AI, Data and Robotics Association (robotics, research community)</p></div>
-    <div><p class="k">ELLIS · since Feb 2024</p><p class="v">Member of the ELLIS Society, the European Laboratory for Learning and Intelligent Systems</p></div>
-  </div>
-
-  <section id="lute">
-    <div class="sec">
-      <div>
-        <h2>Lute</h2>
-        <p class="note">Physical AI in production. Company site at <a href="https://lute.one" target="_blank" rel="noopener">lute.one</a>.</p>
-      </div>
-      <div>
-        <p style="margin:0 0 24px; max-width: 64ch;">
-          Lute builds mobile robots that learn from human demonstrations, aimed at the work that
-          is going undone because there is nobody to do it. As CTO, Krzysztof Walas owns the
-          technical direction: the robots, the data pipeline that teaches them, and everything it
-          takes to run a fleet in someone else's building rather than in a laboratory. The company
-          works out of Redwood City, California and Warsaw, Poland.
-        </p>
-        <div class="cards">
-          <article class="card">
-            <h3>Learning from human demonstrations</h3>
-            <p>Policies are learned from curated teleoperated demonstrations and improve as more arrive. The hard part is not collecting data but knowing which of it is worth training on — a reward model and temporal-progress estimates rank trajectories by quality across different robots and different operators.</p>
-            <p class="tags">imitation learning · data curation · fleet learning</p>
-          </article>
-          <article class="card">
-            <h3>Order picking on a live shop floor</h3>
-            <p>A retail deployment picking against a catalogue of more than 40,000 SKUs while the shop is open, working around staff and customers. Orders arrive from the customer's own systems; the robot localises, plans, avoids obstacles, recovers from its own failures and gets to the drop-off point.</p>
-            <p class="tags">mobile manipulation · retail · autonomy in the wild</p>
-          </article>
-          <article class="card">
-            <h3>Assembly that punishes imprecision</h3>
-            <p>Factory subtasks with no tolerance for a near miss — threading a wire inside a fibre-reinforced polymer tube to sub-millimetre accuracy, for instance. These are where general-purpose policies still break, and where the distance between a convincing demo and a production cell has to be measured honestly.</p>
-            <p class="tags">precision manipulation · manufacturing · evaluation</p>
-          </article>
-          <article class="card">
-            <h3>OpenGVL — measuring data quality</h3>
-            <p>An open benchmark for estimating how far a trajectory has progressed toward its goal, across both robot and human demonstrations, using vision-language models. It exists so dataset curation can be automated and audited instead of done by eye. <a href="https://arxiv.org/abs/2509.17321" target="_blank" rel="noopener">arXiv:2509.17321</a></p>
-            <p class="tags">benchmark · VLMs · open research</p>
-          </article>
-        </div>
-        <p class="field">The thread running back to the academic work is unchanged: a robot that can feel what it is doing fails more gracefully than one that can only look at it. What changed is the bar. A deployed system has to work on a Tuesday afternoon, in a building full of people, without anyone standing by to reset it.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="research">
-    <div class="sec">
-      <div>
-        <h2>Research</h2>
-        <p class="note">The groundwork the product stands on — perception applied to two kinds of contact, walking and grasping. Team page at <a href="https://robotics.put.poznan.pl/perception-for-physical-interaction/" target="_blank" rel="noopener">PUT robotics</a>.</p>
-      </div>
-      <div>
-        <div class="cards">
-          <article class="card">
-            <h3>Haptic terrain perception for legged robots</h3>
-            <p>Force and torque signals from a robot's feet carry enough information to recognise the ground it is standing on. The team's transformer- and state-space-based classifiers (HAPTR, HAPTR2, HAPmamba) are small and fast enough to run on board and are benchmarked on public datasets such as PUTany and QCAT.</p>
-            <p class="tags">legged robots · time-series learning · ANYmal</p>
-          </article>
-          <article class="card">
-            <h3>Sensing physical parameters through interaction</h3>
-            <p>Stiffness, damping and friction are hard to see but easy to feel. This line of work estimates such parameters from direct contact — for example regressing an object's stiffness from inertial sensors on the fingers of a soft gripper — and asks how far vision alone can get.</p>
-            <p class="tags">soft grippers · IMUs · parameter estimation</p>
-          </article>
-          <article class="card">
-            <h3>Manipulating deformable linear objects</h3>
-            <p>Cables, wires and hoses change shape as you handle them. Model-based methods that estimate the object's parameters online, and calibration-free bimanual control, make routing and fitting tasks feasible for dual-arm robots in manufacturing — work that started in the REMODEL project.</p>
-            <p class="tags">deformable objects · bimanual · industrial robotics</p>
-          </article>
-          <article class="card">
-            <h3>Learning agile legged locomotion with active perception</h3>
-            <p>Quadrupeds that switch between gaits, use whole-body contact and an actuated spine, and sense the world through their actuators rather than only through cameras. This is the focus of INTENTION, a joint project with the Intelligent Autonomous Systems group at TU Darmstadt.</p>
-            <p class="tags">reinforcement learning · actuated spine · proprioception</p>
-          </article>
-        </div>
-        <p class="field">Much of this work leaves the lab: legged robots inspecting mines and sewers in the THING project, a quadruped taken into an ice cave, and LunarLeaper, a mission concept for exploring the lunar subsurface with a small legged robot.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <div class="sec">
-      <div>
-        <h2>Projects</h2>
-        <p class="note">Grants where he is or was principal investigator on the Poznan side.</p>
-      </div>
-      <ul class="rows">
-        <li>
-          <span class="when">ongoing</span>
-          <p class="what"><strong><a href="https://intention.put.poznan.pl/" target="_blank" rel="noopener">INTENTION</a></strong><span class="d">learnINg versaTile lEgged locomotioN wiTh actIve perceptiON — agile quadruped locomotion with non-visual sensing and a flexible spine, together with Jan Peters' group at TU Darmstadt.</span></p>
-          <span class="meta">NCN–DFG grant<br>PI at PUT</span>
-        </li>
-        <li>
-          <span class="when">2019 – 2023</span>
-          <p class="what"><strong><a href="https://cordis.europa.eu/project/id/870133" target="_blank" rel="noopener">REMODEL</a></strong><span class="d">Robotic tEchnologies for the Manipulation of cOmplex DeformablE Linear objects — dual-arm handling of wires and cables in manufacturing, coordinated by the University of Bologna with partners including Volkswagen Poznań.</span></p>
-          <span class="meta">Horizon 2020<br>PI at PUT</span>
-        </li>
-        <li>
-          <span class="when">2018 – 2021</span>
-          <p class="what"><strong><a href="https://cordis.europa.eu/project/id/780883" target="_blank" rel="noopener">THING</a></strong><span class="d">subTerranean Haptic INvestiGator — haptic perception and active exploration for legged robots, tested in mines and sewers with the ANYmal quadruped.</span></p>
-          <span class="meta">Horizon 2020<br>PI at PUT</span>
-        </li>
-        <li>
-          <span class="when">2017 – 2020</span>
-          <p class="what"><strong>Perception and control for robotic manipulation of elastic objects</strong><span class="d">LIDER programme grant from Poland's National Centre for Research and Development.</span></p>
-          <span class="meta">NCBR LIDER<br>PI</span>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="publications">
-    <div class="sec">
-      <div>
-        <h2>Selected publications</h2>
-        <p class="note">Full list on <a href="https://scholar.google.com/citations?user=0FZ0cZQAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a> and <a href="https://orcid.org/0000-0002-2800-2716" target="_blank" rel="noopener">ORCID</a>.</p>
-      </div>
-      <ol class="pubs">
-        <li>
-          <span class="year">2026</span>
-          <div>
-            <p class="t">Evaluation of an Actuated Spine in Agile Quadruped Locomotion</p>
-            <p class="a">N. Bohlinger, P. Kicki, D. Tateo et al., with J. Peters and K. Walas</p>
-            <p class="v">Preprint</p>
-          </div>
-        </li>
-        <li>
-          <span class="year">2025</span>
-          <div>
-            <p class="t">LunarLeaper — A mission concept to explore the lunar subsurface with a small-scale legged robot</p>
-            <p class="a">H. Kolvenbach, A. Mittelholz, S. C. Stähler, P. Arm, V. T. Bickel, … K. Walas, … M. Hutter</p>
-            <p class="v">Acta Astronautica 240, 63–75</p>
-          </div>
-        </li>
-        <li>
-          <span class="year">2024</span>
-          <div>
-            <p class="t"><a href="https://doi.org/10.1126/scirobotics.adp1956" target="_blank" rel="noopener">Legged robots beyond bioinspiration</a></p>
-            <p class="a">K. Walas</p>
-            <p class="v">Science Robotics 9(89), eadp1956 · <a href="https://doi.org/10.1126/scirobotics.adp1956" target="_blank" rel="noopener">doi:10.1126/scirobotics.adp1956</a></p>
-          </div>
-        </li>
-        <li>
-          <span class="year">2024</span>
-          <div>
-            <p class="t">Deformable Linear Objects Manipulation With Online Model Parameters Estimation</p>
-            <p class="a">A. Caporali, P. Kicki, K. Galassi, R. Zanella, K. Walas, G. Palli</p>
-            <p class="v">IEEE Robotics and Automation Letters 9(3), 2598–2605</p>
-          </div>
-        </li>
-        <li>
-          <span class="year">2024</span>
-          <div>
-            <p class="t">Calibrationless Bimanual Deformable Linear Object Manipulation With Recursive Least Squares Filter</p>
-            <p class="a">A. Szymko, P. Kicki, K. Walas</p>
-            <p class="v">IEEE Access 12, 126707–126716</p>
-          </div>
-        </li>
-        <li>
-          <span class="year">2024</span>
-          <div>
-            <p class="t"><a href="https://doi.org/10.1007/978-3-031-70722-3_6" target="_blank" rel="noopener">HAPmamba: Linear-Time Sequence Modeling for Terrain Classification by Legged Robots</a></p>
-            <p class="a">M. Wiliński, M. Łysakowski, K. Walas</p>
-            <p class="v">Springer · <a href="https://doi.org/10.1007/978-3-031-70722-3_6" target="_blank" rel="noopener">doi:10.1007/978-3-031-70722-3_6</a></p>
-          </div>
-        </li>
-        <li>
-          <span class="year">2022</span>
-          <div>
-            <p class="t"><a href="https://doi.org/10.1016/j.robot.2022.104236" target="_blank" rel="noopener">HAPTR2: Improved Haptic Transformer for legged robots' terrain classification</a></p>
-            <p class="a">M. Bednarek, M. R. Nowicki, K. Walas</p>
-            <p class="v">Robotics and Autonomous Systems 158, 104236 · <a href="https://doi.org/10.1016/j.robot.2022.104236" target="_blank" rel="noopener">doi:10.1016/j.robot.2022.104236</a></p>
-          </div>
-        </li>
-        <li>
-          <span class="year">2021</span>
-          <div>
-            <p class="t">Fast haptic terrain classification for legged robots using transformer</p>
-            <p class="a">M. Bednarek, M. Łysakowski, J. Bednarek, M. R. Nowicki, K. Walas</p>
-            <p class="v">European Conference on Mobile Robots (ECMR)</p>
-          </div>
-        </li>
-        <li>
-          <span class="year">2021</span>
-          <div>
-            <p class="t"><a href="https://doi.org/10.3390/rs13050965" target="_blank" rel="noopener">Autonomous, Onboard Vision-Based Trash and Litter Detection in Low Altitude Aerial Images Collected by an Unmanned Aerial Vehicle</a></p>
-            <p class="a">M. Kraft, M. Piechocki, B. Ptak, K. Walas</p>
-            <p class="v">Remote Sensing 13(5), 965 · <a href="https://doi.org/10.3390/rs13050965" target="_blank" rel="noopener">doi:10.3390/rs13050965</a> · UAVVaste dataset</p>
-          </div>
-        </li>
-        <li>
-          <span class="year">2019</span>
-          <div>
-            <p class="t">What am I touching? Learning to classify terrain via haptic sensing</p>
-            <p class="a">J. Bednarek, M. Bednarek, L. Wellhausen, M. Hutter, K. Walas</p>
-            <p class="v">IEEE International Conference on Robotics and Automation (ICRA), 7187–7193</p>
-          </div>
-        </li>
-        <li>
-          <span class="year">2019</span>
-          <div>
-            <p class="t">Robotic Touch: Classification of Materials for Manipulation and Walking</p>
-            <p class="a">J. Bednarek, M. Bednarek, P. Kicki, K. Walas</p>
-            <p class="v">IEEE International Conference on Soft Robotics (RoboSoft), 527–533</p>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <section id="bio">
-    <div class="sec">
-      <div>
-        <h2>Bio</h2>
-        <p class="note">From hexapods in Poznań to robots on a live shop floor.</p>
-      </div>
-      <div>
-        <p style="margin:0 0 26px; max-width: 64ch;">
-          Krzysztof Walas graduated from Poznan University of Technology with an MSc in Automatic Control and Robotics
-          and received his PhD in Robotics there in 2012, with honours, for a thesis on legged-robot locomotion in
-          structured environments — work that grew up alongside the university's Messor walking robots. He then joined the
-          Intelligent Robotics Laboratory at the University of Birmingham's School of Computer Science as a postdoctoral
-          researcher, working on object categorisation and pose estimation from 3D data, before returning to Poznań to lead
-          the Perception for Physical Interaction team. In 2023 he took on a research team lead role
-          at IDEAS NCBR in Warsaw, and in 2026 moved into industry as Chief Technology Officer of
-          Lute — carrying the same question about contact and physical understanding out of the
-          laboratory and into systems that have to earn their keep.
-        </p>
-        <ul class="rows two">
-          <li><span class="when">2007 – 2012</span><p class="what"><strong>Research and teaching assistant</strong><span class="d muted">Institute of Control and Information Engineering, Poznan University of Technology</span></p></li>
-          <li><span class="when">2012</span><p class="what"><strong>PhD in Robotics, with honours</strong><span class="d muted">Poznan University of Technology — legged-robot locomotion in structured environments</span></p></li>
-          <li><span class="when">2014</span><p class="what"><strong>Postdoctoral research associate</strong><span class="d muted">Intelligent Robotics Lab, School of Computer Science, University of Birmingham</span></p></li>
-          <li><span class="when">2017</span><p class="what"><strong>LIDER grant</strong><span class="d muted">National Centre for Research and Development (NCBR), Poland</span></p></li>
-          <li><span class="when">2018 – 2023</span><p class="what"><strong>Principal investigator at PUT in two Horizon 2020 projects</strong><span class="d muted">THING (subterranean legged locomotion) and REMODEL (deformable-object manipulation)</span></p></li>
-          <li><span class="when">2023 – 2026</span><p class="what"><strong>Research team lead, Physical Interaction Robotics</strong><span class="d muted">IDEAS NCBR and the IDEAS Research Institute, Warsaw</span></p></li>
-          <li><span class="when">2024</span><p class="what"><strong>ELLIS Society member · Science Robotics author · Adra Board of Directors</strong><span class="d muted">Elected to Adra's board in the robotics section on behalf of the research community — the first board member from Poland</span></p></li>
-          <li><span class="when">2026</span><p class="what"><strong>Chief Technology Officer, Lute</strong><span class="d muted">Physical AI for mobile manipulation — robots that learn physical work from human demonstrations</span></p></li>
-          <li><span class="when">now</span><p class="what"><strong>CTO at Lute · Assistant Professor, PUT</strong><span class="d muted">Lute, Redwood City and Warsaw, and the Institute of Robotics and Machine Intelligence, Poznań</span></p></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="sec">
-      <div>
-        <h2>Contact</h2>
-        <p class="note">Students, collaborators and partners — best reached through the profiles below.</p>
-      </div>
-      <div class="contact single">
-        <div>
-          <p class="k">Profiles</p>
-          <ul>
-            <li><a href="https://scholar.google.com/citations?user=0FZ0cZQAAAAJ&amp;hl=en" target="_blank" rel="me noopener">Google Scholar</a><span>publications &amp; citations</span></li>
-            <li><a href="https://www.linkedin.com/in/krzysztof-walas-850492a7/" target="_blank" rel="me noopener">LinkedIn</a><span>news &amp; openings</span></li>
-            <li><a href="https://x.com/KrzysztofTWalas" target="_blank" rel="me noopener">X · @KrzysztofTWalas</a><span>robots that understand physics</span></li>
-            <li><a href="https://orcid.org/0000-0002-2800-2716" target="_blank" rel="me noopener">ORCID</a><span>0000-0002-2800-2716</span></li>
-            <li><a href="https://www.researchgate.net/profile/Krzysztof-Walas" target="_blank" rel="me noopener">ResearchGate</a><span>lab &amp; preprints</span></li>
-            <li><a href="https://ieeexplore.ieee.org/author/37688621800" target="_blank" rel="me noopener">IEEE Xplore</a><span>author page</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="wrap site-foot">
-  <span>© 2026 Krzysztof Walas · Last updated August 2026</span>
-  <span>Static page, no tracking · <a href="https://ideas-ncbr.pl/en/krzysztof-walas-joins-ellis-society/" target="_blank" rel="noopener">photo credit</a></span>
-</footer>
-
-<script>
-(function () {
-  // Signature: a deterministic, synthetic foot-force trace (Fz, Fx, Fy) of a walking robot
-  // crossing three terrains. It is an illustration, not recorded data.
-  var svg = document.getElementById('trace');
-  if (!svg) return;
-
-  var narrow = window.innerWidth < 640;
-  var W = narrow ? 640 : 1200, LANE = 56, TOP = 8, N = W / 2;
-  var LABEL = narrow ? 17 : 11;           // viewBox units, so labels stay legible on phones
-  var PERIOD_SCALE = narrow ? 0.66 : 1;   // keep roughly a dozen strides visible at any width
-  svg.setAttribute('viewBox', '0 0 ' + W + ' 196');
-  var lanes = [
-    { key: 'Fz', color: 'var(--amber)',  scale: 0.78, base: 0.88 },
-    { key: 'Fx', color: 'var(--cobalt)', scale: 0.42, base: 0.50 },
-    { key: 'Fy', color: '#8A94A0',       scale: 0.90, base: 0.50 }
-  ];
-  var terrains = [
-    { name: 'hard',     peak: 1.00, width: 0.11, noise: 0.030, period: 60 },
-    { name: 'soft',     peak: 0.70, width: 0.18, noise: 0.045, period: 68 },
-    { name: 'granular', peak: 0.88, width: 0.13, noise: 0.120, period: 63 }
-  ];
-
-  function mulberry32(a) {
-    return function () {
-      a |= 0; a = a + 0x6D2B79F5 | 0;
-      var t = Math.imul(a ^ a >>> 15, 1 | a);
-      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
-      return ((t ^ t >>> 14) >>> 0) / 4294967296;
-    };
-  }
-  var rnd = mulberry32(2012);
-
-  // Build strides: each stride belongs to the terrain of the segment it starts in.
-  var strides = [], i = 0;
-  while (i < N) {
-    var seg = terrains[Math.min(2, Math.floor(i / (N / 3)))];
-    var period = Math.round((seg.period + (rnd() - 0.5) * 10) * PERIOD_SCALE);
-    strides.push({ start: i, period: period, t: seg });
-    i += period;
-  }
-
-  var fz = [], fx = [], fy = [], stanceRects = [];
-  strides.forEach(function (s) {
-    var stanceEnd = s.start + Math.round(s.period * 0.62);
-    stanceRects.push([s.start, Math.min(stanceEnd, N)]);
-    for (var k = s.start; k < s.start + s.period && k < N; k++) {
-      var ph = (k - s.start) / s.period, t = s.t, z, x, y;
-      if (ph < 0.62) {
-        var u = ph / 0.62;                       // 0..1 through stance
-        var g1 = Math.exp(-Math.pow((u - 0.24) / t.width, 2));
-        var g2 = Math.exp(-Math.pow((u - 0.78) / t.width, 2));
-        z = t.peak * (0.55 * g1 + 0.62 * g2 + 0.30 * Math.sin(Math.PI * u));
-        x = -0.32 * t.peak * Math.sin(2 * Math.PI * u);
-        y = 0.10 * Math.sin(Math.PI * u) + 0.06 * Math.sin(3 * Math.PI * u);
-      } else {
-        var v = (ph - 0.62) / 0.38;              // 0..1 through swing
-        z = 0.03 * Math.sin(Math.PI * v);
-        x = 0.05 * Math.sin(2 * Math.PI * v);
-        y = 0.04 * Math.sin(2 * Math.PI * v);
-      }
-      z += (rnd() - 0.5) * t.noise * 2;
-      x += (rnd() - 0.5) * t.noise * 1.5;
-      y += (rnd() - 0.5) * t.noise;
-      fz.push(z); fx.push(x); fy.push(y);
-    }
-  });
-
-  function sx(k) { return (k / (N - 1)) * W; }
-  function path(arr, lane, idx) {
-    var top = TOP + idx * LANE, d = '';
-    for (var k = 0; k < arr.length; k++) {
-      var yy = top + LANE * lane.base - arr[k] * LANE * lane.scale;
-      d += (k ? 'L' : 'M') + sx(k).toFixed(1) + ' ' + yy.toFixed(1);
-    }
-    return d;
-  }
-
-  var out = '';
-  // stance shading
-  stanceRects.forEach(function (r) {
-    out += '<rect class="stance" x="' + sx(r[0]).toFixed(1) + '" y="' + TOP + '" width="' +
-           (sx(r[1]) - sx(r[0])).toFixed(1) + '" height="' + (LANE * 3) + '"/>';
-  });
-  // lane separators + labels
-  for (var l = 0; l <= 3; l++) {
-    var yline = TOP + l * LANE;
-    out += '<line class="grid" x1="0" y1="' + yline + '" x2="' + W + '" y2="' + yline + '"/>';
-  }
-  lanes.forEach(function (lane, idx) {
-    out += '<text class="lane-label" font-size="' + LABEL + '" x="8" y="' + (TOP + idx * LANE + LABEL + 3) + '">' + lane.key + '</text>';
-  });
-  // terrain segment labels along the bottom
-  terrains.forEach(function (t, idx) {
-    var xx = idx * (W / 3) + 8;
-    out += '<line class="grid" x1="' + (idx * W / 3).toFixed(1) + '" y1="' + (TOP + LANE * 3) + '" x2="' +
-           (idx * W / 3).toFixed(1) + '" y2="' + (TOP + LANE * 3 + 10) + '"/>';
-    out += '<text class="seg-label" font-size="' + LABEL + '" x="' + xx + '" y="' + (TOP + LANE * 3 + LABEL + 9) + '">' + t.name.toUpperCase() + '</text>';
-  });
-  // traces
-  var series = [fz, fx, fy];
-  lanes.forEach(function (lane, idx) {
-    out += '<path class="trace" data-lane="' + idx + '" stroke="' + lane.color + '" d="' + path(series[idx], lane, idx) + '"/>';
-  });
-  svg.innerHTML = out;
-
-  // Draw-on animation, skipped for reduced-motion users.
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var paths = svg.querySelectorAll('path.trace');
-  if (reduce) return;
-  Array.prototype.forEach.call(paths, function (p, idx) {
-    var len = p.getTotalLength();
-    p.style.strokeDasharray = len;
-    p.style.strokeDashoffset = len;
-    p.style.transitionDelay = (idx * 0.25) + 's';
-  });
-  requestAnimationFrame(function () {
-    requestAnimationFrame(function () {
-      Array.prototype.forEach.call(paths, function (p) { p.classList.add('drawn'); });
-    });
-  });
-})();
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://christow.github.io/Krzysztof-Walas/#person",
+  "name": "Krzysztof Walas",
+  "alternateName": ["Krzysztof T. Walas", "dr inż. Krzysztof Walas"],
+  "url": "https://christow.github.io/Krzysztof-Walas/",
+  "image": "https://christow.github.io/Krzysztof-Walas/assets/krzysztof-walas.jpg",
+  "jobTitle": "Co-founder and CTO",
+  "worksFor": { "@type": "Organization", "name": "Lute", "url": "https://www.lute.one" },
+  "affiliation": [
+    { "@type": "CollegeOrUniversity", "name": "Poznań University of Technology", "url": "https://www.put.poznan.pl/" },
+    { "@type": "Organization", "name": "ELLIS Society", "url": "https://ellis.eu/" }
+  ],
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Poznań University of Technology" },
+    { "@type": "CollegeOrUniversity", "name": "University of Birmingham" }
+  ],
+  "knowsAbout": ["Robotics", "Physical AI", "Robot learning", "Legged locomotion", "Haptic perception", "Robotic manipulation", "Deformable object manipulation"],
+  "sameAs": [
+    "https://scholar.google.com/citations?user=0FZ0cZQAAAAJ",
+    "https://www.linkedin.com/in/krzysztof-walas/",
+    "https://x.com/KrzysztofTWalas",
+    "https://orcid.org/0000-0002-2800-2716",
+    "https://www.researchgate.net/profile/Krzysztof-Walas",
+    "https://ieeexplore.ieee.org/author/37688621800",
+    "https://ellis.eu/person/krzysztof-walas"
+  ]
+}
 </script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #FEFEFC;
+    --text: #16181B;
+    --muted: #5F646B;
+    --line: #E4E6EA;
+    --card: #F0F1F4;
+    --accent: #004D78;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0F1113;
+      --text: #E8E9EB;
+      --muted: #9CA1A8;
+      --line: #25292E;
+      --card: #171A1D;
+      --accent: #92C5E5;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-padding-top: 56px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 400 17px/1.62 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  img { display: block; max-width: 100%; height: auto; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 20px 48px; }
+
+  .site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    margin: 0 0 40px;
+    padding: 12px 0 14px;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.9rem;
+    font-weight: 500;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--bg);
+  }
+  .site-nav a { color: var(--muted); }
+  .site-nav a:hover { color: var(--accent); text-decoration: none; }
+
+  /* intro */
+  .intro { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 28px; align-items: start; }
+  h1 { font-size: clamp(2rem, 4vw, 2.5rem); line-height: 1.1; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 12px; }
+  .intro p { margin: 0 0 14px; }
+  .profile { min-width: 0; }
+  .portrait { width: 100%; border-radius: 8px; }
+  .links { margin-top: 8px; font-size: 0.8rem; line-height: 1.6; }
+  .links .row { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .links a, .contact-email { display: inline-flex; align-items: center; gap: 4px; }
+  .links svg { width: 1em; height: 1em; fill: currentColor; flex: none; }
+  .links .separator { color: var(--muted); }
+  /* sections */
+  section { margin-top: 64px; }
+  h2 { font-size: 1.2rem; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 20px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+  .date, .venue, .meta { font-family: var(--sans); font-size: 0.82rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; font-variant-numeric: tabular-nums; }
+
+  /* news */
+  .news { list-style: none; margin: 0; padding: 0; }
+  .news li { display: grid; grid-template-columns: 92px 1fr; gap: 16px; padding: 6px 0; }
+  .news .date { padding-top: 3px; }
+
+  /* selected work */
+  .work { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 28px; }
+  .work article { margin: 0; }
+  .work .thumb { display: block; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 6px; background: var(--card); border: 1px solid var(--line); }
+  .work .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+  .work .thumb:hover img { transform: scale(1.02); }
+  .work h3 { font-size: 1rem; font-weight: 600; line-height: 1.35; margin: 14px 0 4px; }
+  .work p { margin: 6px 0 0; color: var(--muted); font-size: 0.95rem; }
+  .work .venue { display: block; }
+  .work .act { margin-top: 8px; font-size: 0.9rem; }
+  .act a:not(:last-child)::after { content: "/"; color: var(--muted); margin: 0 8px; }
+
+  /* projects */
+  .rows { list-style: none; margin: 0; padding: 0; }
+  .rows li { display: grid; grid-template-columns: 148px minmax(0, 1fr); gap: 16px; padding: 8px 0; }
+  .rows .date { padding-top: 3px; }
+  .rows strong { font-weight: 600; }
+  .rows span.d { color: var(--muted); }
+
+  /* publications */
+  .pubs { list-style: none; margin: 0; padding: 0; }
+  .pubs li { display: grid; grid-template-columns: 92px 1fr; gap: 16px; padding: 9px 0; }
+  .pubs .date { padding-top: 3px; }
+  .pubs .t { font-weight: 500; }
+  .pubs .a { color: var(--muted); font-size: 0.93rem; }
+  .pubs .a b { color: var(--text); font-weight: 500; }
+  .pubs .v { font-size: 0.93rem; font-style: italic; color: var(--muted); }
+  .more { margin-top: 14px; font-size: 0.95rem; color: var(--muted); }
+
+  .pub-disclosure summary { display: inline-block; list-style: none; margin: 8px 0; color: var(--accent); cursor: pointer; }
+  .pub-disclosure summary::-webkit-details-marker { display: none; }
+  .pub-disclosure summary:hover, .pub-disclosure summary:focus-visible { outline: none; text-decoration: underline; text-underline-offset: 3px; }
+  .pub-disclosure .less, .pub-disclosure[open] .all { display: none; }
+  .pub-disclosure[open] .less { display: inline; }
+
+  footer { margin-top: 72px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--muted); }
+
+  @media (max-width: 680px) {
+    html { scroll-padding-top: 100px; }
+    .wrap { padding-top: 12px; }
+    .site-nav { margin-bottom: 26px; }
+    .intro { grid-template-columns: 150px minmax(0, 1fr); gap: 20px; }
+    h1 { font-size: 2rem; }
+    .work { grid-template-columns: 1fr; }
+    .news li, .rows li, .pubs li { grid-template-columns: 1fr; gap: 2px; }
+    /* the two-link rows don't fit a 150px column: stack the links, no separators */
+    .links .row:not(.contact-email) { flex-direction: column; align-items: flex-start; gap: 0; }
+    .links .separator { display: none; }
+  }
+  @media (max-width: 520px) {
+    html { scroll-padding-top: 12px; }
+    .site-nav { position: static; }
+    .intro { grid-template-columns: 112px minmax(0, 1fr); gap: 0 16px; }
+    .intro-copy { display: contents; }
+    .intro h1 { grid-column: 2; grid-row: 1; align-self: start; }
+    .intro .lead { grid-column: 2; grid-row: 2; }
+    /* phones: the links leave the narrow photo column and run full width under the photo and name */
+    .profile { display: contents; }
+    .portrait { grid-column: 1; grid-row: 1 / 3; margin-bottom: 14px; }
+    .links { grid-column: 1 / -1; grid-row: 3; margin: 0 0 16px; }
+    .links .row:not(.contact-email) { flex-direction: row; align-items: center; gap: 6px; }
+    .links .separator { display: inline; }
+    .intro-copy > p:not(.lead) { grid-column: 1 / -1; }
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <nav class="site-nav" aria-label="Page sections">
+    <a href="#about">About</a>
+    <a href="#news">News</a>
+    <a href="#work">Selected work</a>
+    <a href="#projects">Projects</a>
+    <a href="#publications">Publications</a>
+  </nav>
+
+  <header class="intro" id="about">
+    <div class="profile">
+      <img class="portrait" src="assets/krzysztof-walas.jpg" width="640" height="640" alt="Krzysztof Walas">
+      <div class="links">
+        <div class="row"><a href="https://www.linkedin.com/in/krzysztof-walas/" rel="me"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 2h-17C2.7 2 2 2.7 2 3.6v16.8c0 .9.7 1.6 1.5 1.6h17c.8 0 1.5-.7 1.5-1.6V3.6c0-.9-.7-1.6-1.5-1.6ZM8 19H5V9h3ZM6.5 7.7a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4ZM19 19h-3v-5.3c0-1.4-.5-2.2-1.7-2.2-1.3 0-2 1-2 2.4V19h-3V9h2.9v1.4c.6-1 1.6-1.7 3.1-1.7 2.5 0 3.7 1.6 3.7 4.4Z"/></svg>LinkedIn</a><span class="separator" aria-hidden="true">|</span><a href="https://scholar.google.com/citations?user=0FZ0cZQAAAAJ&amp;hl=en" rel="me"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2 0 10l12 8 12-8-12-8Zm-7.5 13 7.5 5 7.5-5v3.3L12 23l-7.5-4.7Z"/></svg>Google Scholar</a></div>
+        <div class="row"><a href="https://x.com/KrzysztofTWalas" rel="me"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.953 4.57a10 10 0 0 1-2.825.775 4.958 4.958 0 0 0 2.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 0 0-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 0 0-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.228-.616v.06a4.923 4.923 0 0 0 3.946 4.827 4.996 4.996 0 0 1-2.212.085 4.936 4.936 0 0 0 4.604 3.417 9.867 9.867 0 0 1-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0 0 7.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0 0 24 4.59z"/></svg>Twitter</a><span class="separator" aria-hidden="true">|</span><a href="https://orcid.org/0000-0002-2800-2716" rel="me"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11"/><g fill="var(--bg)"><circle cx="7" cy="7" r="1.1"/><path d="M6 9h2v8H6zM10 7h3a5 5 0 0 1 0 10h-3zm2 1.7v6.6h1a3.3 3.3 0 0 0 0-6.6z" fill-rule="evenodd"/></g></svg>ORCID</a></div>
+        <div class="row contact-email"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m4 7 8 6 8-6" fill="none" stroke="var(--bg)" stroke-width="1.7"/></svg>name @ lute.one</div>
+      </div>
+    </div>
+    <div class="intro-copy">
+      <h1>Krzysztof Walas</h1>
+      <p class="lead">I am a co-founder and CTO at <a href="https://www.lute.one">Lute</a>.</p>
+      <p>Lute is a physical AI company that puts intelligence to work. We deploy robots at the actual work sites in retail, logistics and manufacturing.</p>
+      <p>Lute is hiring researchers and engineers in robot learning. <a href="https://www.lute.one/careers">See open roles</a>.</p>
+      <p>I am an assistant professor at Poznań University of Technology (PUT), where I have spent my research career working on robots that touch things: legged robots that recognise terrain through their feet, grippers that estimate how soft an object is, and dual-arm robots that handle cables. I led the Poznań teams in two EU Horizon 2020 projects, <a href="https://cordis.europa.eu/project/id/780883">THING</a> and <a href="https://cordis.europa.eu/project/id/870133">REMODEL</a>, and the Physical Interaction Robotics team at <a href="https://ideas-ncbr.pl/en/">IDEAS NCBR</a> in Warsaw.</p>
+    </div>
+  </header>
+
+  <section id="news" aria-labelledby="news-h">
+    <h2 id="news-h">News</h2>
+    <ul class="news">
+      <li><span class="date">Feb 2026</span><span>Talked about robots with bodies on Radio357’s <a href="https://radio357.pl/podcasty/audycje/firmament/odcinek/597112/">Firmament</a> (in Polish).</span></li>
+      <li><span class="date">Jan 2026</span><span>Started <a href="https://www.lute.one">Lute</a> as CTO and co-founder together with <a href="https://budzianowski.github.io/">Paweł Budzianowski</a>.</span></li>
+      <li><span class="date">Sep 2025</span><span>Released <a href="https://arxiv.org/abs/2509.17321">OpenGVL</a>, an open benchmark for curating robot training data, with the Lute team.</span></li>
+      <li><span class="date">Nov 2024</span><span><a href="https://arxiv.org/abs/2409.06366">One Policy to Run Them All</a> presented at CoRL 2024 in Munich.</span></li>
+      <li><span class="date">Jun 2024</span><span>Elected to the Board of Directors of <a href="https://ideas-ncbr.pl/en/krzysztof-walas-joins-adra-board-of-directors/">Adra</a>, the first board member from Poland.</span></li>
+      <li><span class="date">Apr 2024</span><span>Published <a href="https://doi.org/10.1126/scirobotics.adp1956">Legged robots beyond bioinspiration</a> in Science Robotics.</span></li>
+      <li><span class="date">Feb 2024</span><span>Joined the <a href="https://ellis.eu/person/krzysztof-walas">ELLIS Society</a>.</span></li>
+    </ul>
+  </section>
+
+  <section id="work" aria-labelledby="work-h">
+    <h2 id="work-h">Selected work</h2>
+    <div class="work">
+
+      <article>
+        <a class="thumb" href="https://www.lute.one/research"><img src="assets/lute-thumb.jpg" width="1337" height="752" loading="lazy" alt="Lute’s “Put intelligence to work” graphic with two robot arms"></a>
+        <h3><a href="https://www.lute.one/research">Lute</a></h3>
+        <span class="venue">Co-founder and CTO, since 2026</span>
+        <p>Physical AI that turns robot hardware into work on real store and factory floors. Our research notes cover data curation, real-time control and deployment.</p>
+        <div class="act"><a href="https://www.lute.one/research">Research notes</a><a href="https://www.lute.one/careers">Careers</a></div>
+      </article>
+
+      <article>
+        <a class="thumb" href="https://www.lute.one/insight/blog/benchmarking-visual-temporal-progress"><img src="assets/opengvl.jpg" width="800" height="450" loading="lazy" alt="Predicted versus true task completion across frames of a human demonstration"></a>
+        <h3><a href="https://arxiv.org/abs/2509.17321">OpenGVL: benchmarking visual temporal progress for data curation</a></h3>
+        <span class="venue">CoRL 2025 workshop</span>
+        <p>Can a vision-language model tell how far a robot, or a person, has got through a task? An open benchmark for using that signal to filter demonstrations before training.</p>
+        <div class="act"><a href="https://arxiv.org/abs/2509.17321">Paper</a><a href="https://www.lute.one/insight/blog/benchmarking-visual-temporal-progress">Blog post</a></div>
+      </article>
+
+      <article>
+        <a class="thumb" href="https://youtu.be/BbbBAH-T7-Q"><img src="assets/one-policy.jpg" width="800" height="450" loading="lazy" alt="Quadrupeds, hexapods and humanoids controlled by one locomotion policy in simulation"></a>
+        <h3><a href="https://arxiv.org/abs/2409.06366">One Policy to Run Them All</a></h3>
+        <span class="venue">CoRL 2024</span>
+        <p>One locomotion policy trained on 16 simulated robots, from quadrupeds and hexapods to humanoids, that transfers zero-shot to real robots.</p>
+        <div class="act"><a href="https://arxiv.org/abs/2409.06366">Paper</a><a href="https://youtu.be/BbbBAH-T7-Q">Video</a><a href="https://nico-bohlinger.github.io/one_policy_to_run_them_all_website/">Project page</a></div>
+      </article>
+
+      <article>
+        <a class="thumb" href="https://doi.org/10.1126/scirobotics.adp1956"><img src="assets/science-robotics.jpg" width="800" height="450" loading="lazy" alt="A quadruped robot on uneven ground"></a>
+        <h3><a href="https://doi.org/10.1126/scirobotics.adp1956">Legged robots beyond bioinspiration</a></h3>
+        <span class="venue">Science Robotics, 2024</span>
+        <p>A focus piece on why engineering can take locomotion past what biology allows, from hybrid wheeled legs to learning gaits that use touch, not just cameras.</p>
+        <div class="act"><a href="https://doi.org/10.1126/scirobotics.adp1956">Paper</a></div>
+      </article>
+
+      <article>
+        <a class="thumb" href="https://www.youtube.com/watch?v=TBppX3Ba_f0"><img src="assets/where-should-i-walk.jpg" width="800" height="450" loading="lazy" alt="ANYmal quadruped planning a path over terrain coloured by predicted traversability"></a>
+        <h3><a href="https://doi.org/10.1109/LRA.2019.2895390">Where Should I Walk? Predicting terrain properties from images</a></h3>
+        <span class="venue">RA-L 2019, with ETH Zurich</span>
+        <p>The ANYmal quadruped learns to predict terrain properties from camera images, using what its feet felt as free training labels.</p>
+        <div class="act"><a href="https://doi.org/10.1109/LRA.2019.2895390">Paper</a><a href="https://www.youtube.com/watch?v=TBppX3Ba_f0">Video</a></div>
+      </article>
+
+      <article>
+        <a class="thumb" href="https://cordis.europa.eu/project/id/780883"><img src="assets/thing-sewer.jpg" width="800" height="450" loading="lazy" alt="ANYmal quadruped inspecting a sewer pipe"></a>
+        <h3><a href="https://cordis.europa.eu/project/id/780883">THING: haptic perception for legged robots underground</a></h3>
+        <span class="venue">Horizon 2020, principal investigator at PUT</span>
+        <p>Legged robots that classify terrain and structures through their feet, tested in mines and sewers with ANYmal, when cameras and lidar fail.</p>
+        <div class="act"><a href="https://cordis.europa.eu/project/id/780883">Project</a><a href="https://www.youtube.com/watch?v=oZRb4s1UrFM">Video</a></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="projects" aria-labelledby="projects-h">
+    <h2 id="projects-h">Projects</h2>
+    <ul class="rows">
+      <li>
+        <span class="date">Jul 2025 – present</span>
+        <div><strong>Project Manager at <a href="https://put.poznan.pl/en/article/esa-spaceship-poland-team-visits-esas-largest-technical-centre">ESA Spaceship Poland</a></strong><br><span class="d">I manage the programme at PUT, where participants work on projects in space robotics.</span></div>
+      </li>
+      <li>
+        <span class="date">Jul 2024 – May 2026</span>
+        <div><strong>Member of the Board of Directors at <a href="https://ellis.ideas.edu.pl/news/krzysztof-walas-became-a-member-of-the-adra-board-of-directors/">Adra</a></strong><br><span class="d">I represented the robotics research community on the board of the European AI, Data and Robotics Association.</span></div>
+      </li>
+      <li>
+        <span class="date">ongoing</span>
+        <div><strong>Principal Investigator for INTENTION</strong><br><span class="d">I lead the PUT side of this joint project with Jan Peters’ group at TU Darmstadt on agile legged locomotion with non-visual sensing and an actuated spine. It is funded by Poland’s National Science Centre (NCN) and the German Research Foundation (DFG).</span></div>
+      </li>
+      <li>
+        <span class="date">Nov 2019 – Oct 2023</span>
+        <div><strong>Principal Investigator for <a href="https://cordis.europa.eu/project/id/870133">REMODEL</a></strong><br><span class="d">I led the PUT team in this EU Horizon 2020 project on dual-arm robots that handle cables and wires in manufacturing. The project was coordinated by the University of Bologna.</span></div>
+      </li>
+      <li>
+        <span class="date">Sep 2019 – present</span>
+        <div><strong>Co-founder and Mentor at <a href="https://www.mabrobotics.pl/">MAB Robotics</a></strong><br><span class="d">I mentored the students who built the team’s first walking robot as their bachelor’s project.</span></div>
+      </li>
+      <li>
+        <span class="date">Jan 2018 – Sep 2021</span>
+        <div><strong>Principal Investigator for <a href="https://cordis.europa.eu/project/id/780883">THING</a></strong><br><span class="d">I led the PUT team in this EU Horizon 2020 project on haptic perception for legged robots in mines and sewers, using the ANYmal quadruped.</span></div>
+      </li>
+      <li>
+        <span class="date">Jun 2017 – Jun 2019</span>
+        <div><strong>Robotics Advisor at <a href="https://nomagic.ai/">Nomagic</a></strong><br><span class="d">As Nomagic’s first robotics advisor, I helped the team set up the hardware and sensors for its first warehouse robots. Nomagic had <a href="https://nomagic.ai/news/nomagic-secures-an-additional-10m-to-accelerate-commercial-growth-and-advance-its-technology-roadmap/">raised $84 million since the founding</a>.</span></div>
+      </li>
+      <li>
+        <span class="date">2017 – 2020</span>
+        <div><strong>Principal Investigator for a <a href="https://radon.nauka.gov.pl/dane/profil/61e157fa3e61b773487fb728">LIDER</a> grant</strong><br><span class="d">I led this project on perception and control for robotic manipulation of elastic objects, funded by Poland’s National Centre for Research and Development (NCBR).</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <section id="publications" aria-labelledby="pubs-h">
+    <h2 id="pubs-h">Publications</h2>
+    <p class="more">Full list on <a href="https://scholar.google.com/citations?user=0FZ0cZQAAAAJ&amp;hl=en">Google Scholar</a> and <a href="https://orcid.org/0000-0002-2800-2716">ORCID</a>.</p>
+    <ol class="pubs">
+      <li><span class="date">2026</span><div><a class="t" href="https://doi.org/10.1016/j.actaastro.2025.11.039">LunarLeaper: a mission concept to explore the lunar subsurface with a small-scale legged robot</a><div class="a">H. Kolvenbach et al., incl. <b>K. Walas</b></div><div class="v">Acta Astronautica</div></div></li>
+      <li><span class="date">2025</span><div><a class="t" href="https://arxiv.org/abs/2509.17321">OpenGVL: benchmarking visual temporal progress for data curation</a><div class="a">P. Budzianowski, E. Wiśnios, M. Tyrolski, G. Góral, I. Kulakov, V. Petrenko, <b>K. Walas</b></div><div class="v">CoRL 2025 Workshop on Making Sense of Data in Robotics</div></div></li>
+      <li><span class="date">2024</span><div><a class="t" href="https://arxiv.org/abs/2409.06366">One Policy to Run Them All: an end-to-end learning approach to multi-embodiment locomotion</a><div class="a">N. Bohlinger, G. Czechmanowski, M. Krupka, P. Kicki, <b>K. Walas</b>, J. Peters, D. Tateo</div><div class="v">Conference on Robot Learning (CoRL)</div></div></li>
+      <li><span class="date">2024</span><div><a class="t" href="https://doi.org/10.1126/scirobotics.adp1956">Legged robots beyond bioinspiration</a><div class="a"><b>K. Walas</b></div><div class="v">Science Robotics</div></div></li>
+      <li><span class="date">2024</span><div><a class="t" href="https://doi.org/10.1109/TRO.2023.3326922">Fast kinodynamic planning on the constraint manifold with deep neural networks</a><div class="a">P. Kicki, P. Liu, D. Tateo, H. Bou-Ammar, <b>K. Walas</b>, P. Skrzypczyński, J. Peters</div><div class="v">IEEE Transactions on Robotics</div></div></li>
+      <li><span class="date">2024</span><div><a class="t" href="https://doi.org/10.1109/LRA.2024.3357310">Deformable linear objects manipulation with online model parameters estimation</a><div class="a">A. Caporali, P. Kicki, K. Galassi, R. Zanella, <b>K. Walas</b>, G. Palli</div><div class="v">IEEE Robotics and Automation Letters</div></div></li>
+      <li><span class="date">2022</span><div><a class="t" href="https://doi.org/10.1016/j.robot.2022.104236">HAPTR2: improved haptic transformer for legged robots’ terrain classification</a><div class="a">M. Bednarek, M. R. Nowicki, <b>K. Walas</b></div><div class="v">Robotics and Autonomous Systems</div></div></li>
+      <li><span class="date">2021</span><div><a class="t" href="https://doi.org/10.1007/s10514-021-10013-w">Navigating by touch: haptic Monte Carlo localization via geometric sensing and terrain classification</a><div class="a">R. Buchanan, J. Bednarek, M. Camurri, M. R. Nowicki, <b>K. Walas</b>, M. Fallon</div><div class="v">Autonomous Robots</div></div></li>
+      <li><span class="date">2019</span><div><a class="t" href="https://doi.org/10.1109/LRA.2019.2895390">Where should I walk? Predicting terrain properties from images via self-supervised learning</a><div class="a">L. Wellhausen, A. Dosovitskiy, R. Ranftl, <b>K. Walas</b>, C. Cadena, M. Hutter</div><div class="v">IEEE Robotics and Automation Letters</div></div></li>
+      <li><span class="date">2019</span><div><a class="t" href="https://doi.org/10.1109/ICRA.2019.8794478">What am I touching? Learning to classify terrain via haptic sensing</a><div class="a">J. Bednarek, M. Bednarek, L. Wellhausen, M. Hutter, <b>K. Walas</b></div><div class="v">IEEE International Conference on Robotics and Automation (ICRA)</div></div></li>
+      <li><span class="date">2015</span><div><a class="t" href="https://doi.org/10.1007/s10846-014-0067-0">Terrain classification and negotiation with a walking robot</a><div class="a"><b>K. Walas</b></div><div class="v">Journal of Intelligent and Robotic Systems</div></div></li>
+    </ol>
+    <details class="pub-disclosure">
+      <summary><span class="all">Show more</span><span class="less">Show less</span></summary>
+      <ol class="pubs" start="12">
+        <li><span class="date">2026</span><div><a class="t" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=0FZ0cZQAAAAJ&amp;pagesize=100&amp;citation_for_view=0FZ0cZQAAAAJ:nb7KW1ujOQ8C">Beyond Reactive Adaptation: Long-Horizon Memory for Autonomous Racing via State Space Models</a><div class="a">G. Czechmanowski, J. Węgrzynowski, P. Kicki, <b>K. Walas</b></div><div class="v">ICRA workshop on cross-disciplinary aspects of exploration</div></div></li>
+        <li><span class="date">2026</span><div><a class="t" href="https://doi.org/10.48550/arxiv.2605.07988">Evaluation of an Actuated Spine in Agile Quadruped Locomotion</a><div class="a">N. Bohlinger, P. Kicki, D. Tateo, <b>K. Walas</b>, J. Peters</div><div class="v">arXiv preprint</div></div></li>
+        <li><span class="date">2026</span><div><a class="t" href="https://doi.org/10.1016/j.eswa.2026.134870">Learning quasi-static 3D models of markerless deformable linear objects for bimanual robotic manipulation</a><div class="a">P. Kicki, M. Bidziński, <b>K. Walas</b></div><div class="v">Expert Systems with Applications</div></div></li>
+        <li><span class="date">2026</span><div><a class="t" href="https://openreview.net/pdf?id=QhrxhlTuPt">Learning What Matters: Task Tailored Dynamics Models through Differentiable MPC</a><div class="a">J. Węgrzynowski, P. Kicki, G. Czechmanowski, <b>K. Walas</b></div><div class="v">ICRA workshop</div></div></li>
+        <li><span class="date">2026</span><div><a class="t" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=0FZ0cZQAAAAJ&amp;pagesize=100&amp;citation_for_view=0FZ0cZQAAAAJ:1sJd4Hv_s6UC">SplineTM: B-Spline Tire Modeling for Autonomous Racing</a><div class="a">P. Kicki, J. Węgrzynowski, G. Czechmanowski, <b>K. Walas</b></div><div class="v">ICRA Workshop on Synthetic Data for Robot Learning</div></div></li>
+        <li><span class="date">2025</span><div><a class="t" href="https://doi.org/10.48550/arxiv.2508.06181">Beyond Constant Parameters: Hyper Prediction Models and HyperMPC</a><div class="a">J. Węgrzynowski, P. Kicki, G. Czechmanowski, M. Krupka, <b>K. Walas</b></div><div class="v">Conference on Robot Learning (CoRL)</div></div></li>
+        <li><span class="date">2025</span><div><a class="t" href="https://doi.org/10.52202/083087-0003">Comparative Analysis of Robust and Predictive Control Approaches for Sounding Rocket Attitude Control</a><div class="a">N. Wiśniewska, A. Rafalski, B. Ziegler, <b>K. Walas</b></div><div class="v">IAF Astrodynamics Symposium, International Astronautical Congress (IAC)</div></div></li>
+        <li><span class="date">2025</span><div><a class="t" href="https://openreview.net/pdf?id=yTCHrPT89a">Data-Driven Simulation for Training High-Performance Policies</a><div class="a">G. Czechmanowski, J. Węgrzynowski, P. Kicki, <b>K. Walas</b></div><div class="v">Learning to Simulate Robot Worlds</div></div></li>
+        <li><span class="date">2025</span><div><span class="t">Learning Robot Locomotion for Multiple Embodiments</span><div class="a">N. Bohlinger, G. Czechmanowski, M. Krupka, P. Kicki, <b>K. Walas</b>, J. Peters, D. Tateo</div><div class="v">International Symposium on Adaptive Motion of Animals and Machines</div></div></li>
+        <li><span class="date">2025</span><div><a class="t" href="https://www.hou.usra.edu/meetings/lpsc2025/pdf/1957.pdf">LunarLeaper – Unlocking a Subsurface World</a><div class="a">A. Mittelholz et al., incl. <b>K. Walas</b></div><div class="v">Lunar and Planetary Science Conference (LPSC)</div></div></li>
+        <li><span class="date">2025</span><div><span class="t">Morphology-Aware Legged Locomotion with Reinforcement Learning</span><div class="a">N. Bohlinger, G. Czechmanowski, M. Krupka, P. Kicki, <b>K. Walas</b>, J. Peters, D. Tateo</div><div class="v">German Robotics Conference</div></div></li>
+        <li><span class="date">2025</span><div><a class="t" href="https://doi.org/10.1109/iros60139.2025.11245855">On learning racing policies with reinforcement learning</a><div class="a">G. Czechmanowski, J. Węgrzynowski, P. Kicki, <b>K. Walas</b></div><div class="v">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</div></div></li>
+        <li><span class="date">2025</span><div><a class="t" href="https://doi.org/10.1109/ecmr65884.2025.11163249">Robust localization, mapping, and navigation for quadruped robots</a><div class="a">D. Aditya, J. Huang, N. Bohlinger, P. Kicki, <b>K. Walas</b>, J. Peters, M. Luperto, D. Tateo</div><div class="v">European Conference on Mobile Robots (ECMR)</div></div></li>
+        <li><span class="date">2024</span><div><a class="t" href="https://doi.org/10.48550/arxiv.2408.14063">Bridging the gap between learning-to-plan, motion primitives and safe reinforcement learning</a><div class="a">P. Kicki, D. Tateo, P. Liu, J. Günster, J. Peters, <b>K. Walas</b></div><div class="v">arXiv preprint</div></div></li>
+        <li><span class="date">2024</span><div><a class="t" href="https://doi.org/10.1109/access.2024.3438624">Calibrationless bimanual deformable linear object manipulation with recursive least squares filter</a><div class="a">A. Szymko, P. Kicki, <b>K. Walas</b></div><div class="v">IEEE Access</div></div></li>
+        <li><span class="date">2024</span><div><a class="t" href="https://doi.org/10.1007/978-3-031-70722-3_6">HAPmamba: Linear-Time Sequence Modeling for Terrain Classification by Legged Robots</a><div class="a">M. Wilinski, M. Łysakowski, <b>K. Walas</b></div><div class="v">International Conference on Climbing and Walking Robots (CLAWAR)</div></div></li>
+        <li><span class="date">2024</span><div><a class="t" href="https://doi.org/10.1109/iros58592.2024.10802481">Learning dynamics models for velocity estimation in autonomous racing</a><div class="a">J. Węgrzynowski, G. Czechmanowski, P. Kicki, <b>K. Walas</b></div><div class="v">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</div></div></li>
+        <li><span class="date">2024</span><div><a class="t" href="https://doi.org/10.1016/j.heliyon.2024.e34967">Passive wheels – A new localization system for automated guided vehicles</a><div class="a">K. Bereszyński, M. Pelic, W. Paszkowiak, S. Pabiszczak, A. Myszkowski, <b>K. Walas</b>, G. Czechmanowski, J. Węgrzynowski, T. Bartkowiak</div><div class="v">Heliyon</div></div></li>
+        <li><span class="date">2024</span><div><a class="t" href="https://doi.org/10.1109/iros58592.2024.10802282">Using augmented reality in human-robot assembly: A comparative study of eye-gaze and hand-ray pointing methods</a><div class="a">S. K. Tadeja, T. Zhou, M. Capponi, <b>K. Walas</b>, T. Bohné, F. Forni</div><div class="v">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</div></div></li>
+        <li><span class="date">2023</span><div><a class="t" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=0FZ0cZQAAAAJ&amp;pagesize=100&amp;citation_for_view=0FZ0cZQAAAAJ:yD5IFk8b50cC">Benefits of an Actuated Spine in Agile Quadruped Locomotion</a><div class="a">N. Bohlinger, D. Tateo, P. Kicki, <b>K. Walas</b>, J. Peters</div><div class="v">IEEE International Conference on Robotics and Automation (ICRA)</div></div></li>
+        <li><span class="date">2023</span><div><a class="t" href="https://doi.org/10.1109/igarss52108.2023.10281928">Cognition: Distributed Data Processing System for Lunar Activities</a><div class="a"><b>K. Walas</b> et al.</div><div class="v">IEEE International Geoscience and Remote Sensing Symposium (IGARSS)</div></div></li>
+        <li><span class="date">2023</span><div><a class="t" href="https://doi.org/10.1109/aim46323.2023.10196168">Copy and paste augmentation for deformable wiring harness bags segmentation</a><div class="a">B. L. Žagar, A. Caporali, A. Szymko, P. Kicki, <b>K. Walas</b>, G. Palli, A. C. Knoll</div><div class="v">IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM)</div></div></li>
+        <li><span class="date">2023</span><div><a class="t" href="https://doi.org/10.1109/icra48891.2023.10160437">DLOFTBs – Fast Tracking of Deformable Linear Objects with B-splines</a><div class="a">P. Kicki, A. Szymko, <b>K. Walas</b></div><div class="v">IEEE International Conference on Robotics and Automation (ICRA)</div></div></li>
+        <li><span class="date">2023</span><div><a class="t" href="https://doi.org/10.1109/igarss52108.2023.10281823">Integration of Heterogeneous Computational Platform-Based, Ai-Capable Planetary Rover Using ROS 2</a><div class="a">M. Kraft, <b>K. Walas</b>, B. Ptak, M. Bidziński, K. Stężała, D. Pieczyński</div><div class="v">IEEE International Geoscience and Remote Sensing Symposium (IGARSS)</div></div></li>
+        <li><span class="date">2023</span><div><a class="t" href="https://doi.org/10.1016/j.conengprac.2022.105382">Robust control strategy for generalized N-trailer vehicles based on a dual-stage disturbance observer</a><div class="a">L. Guevara, F. Jorquera, <b>K. Walas</b>, F. Auat-Cheein</div><div class="v">Control Engineering Practice</div></div></li>
+        <li><span class="date">2022</span><div><a class="t" href="https://doi.org/10.1109/vrw55335.2022.00103">Design of ARQ: An augmented reality system for assembly training enhanced with QR-tagging and 3D engineering asset model</a><div class="a">S. K. Tadeja, D. Janik, P. Stachura, M. Tomecki, <b>K. Walas</b></div><div class="v">IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW)</div></div></li>
+        <li><span class="date">2022</span><div><a class="t" href="https://doi.org/10.1109/vrw55335.2022.00083">MARS: A cross-platform mobile AR system for remote collaborative instruction and installation support using digital twins</a><div class="a">S. K. Tadeja, D. Janik, P. Stachura, M. Tomecki, K. Książczak, <b>K. Walas</b></div><div class="v">IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW)</div></div></li>
+        <li><span class="date">2022</span><div><a class="t" href="https://doi.org/10.48550/arxiv.2209.11181">Teaching autonomous systems hands-on: Leveraging modular small-scale hardware in the robotics classroom</a><div class="a">J. Betz et al., incl. <b>K. Walas</b></div><div class="v">arXiv preprint</div></div></li>
+        <li><span class="date">2022</span><div><a class="t" href="https://doi.org/10.1109/icra46639.2022.9812296">Unsupervised learning of terrain representations for haptic Monte Carlo localization</a><div class="a">M. Łysakowski, M. R. Nowicki, R. Buchanan, M. Camurri, M. Fallon, <b>K. Walas</b></div><div class="v">IEEE International Conference on Robotics and Automation (ICRA)</div></div></li>
+        <li><span class="date">2021</span><div><a class="t" href="https://doi.org/10.1109/ro-man50785.2021.9515406">A study of cobot practitioners needs for augmented reality interfaces in the context of current technologies</a><div class="a">K. Zieliński, <b>K. Walas</b>, J. Heredia, M. B. Kjærgaard</div><div class="v">IEEE International Conference on Robot and Human Interactive Communication (RO-MAN)</div></div></li>
+        <li><span class="date">2021</span><div><a class="t" href="https://doi.org/10.3390/rs13050965">Autonomous, onboard vision-based trash and litter detection in low altitude aerial images collected by an unmanned aerial vehicle</a><div class="a">M. Kraft, M. Piechocki, B. Ptak, <b>K. Walas</b></div><div class="v">Remote Sensing</div></div></li>
+        <li><span class="date">2021</span><div><a class="t" href="https://doi.org/10.1109/ecmr50962.2021.9568808">Fast Haptic Terrain Classification for Legged Robots Using Transformer</a><div class="a">M. Bednarek, M. Łysakowski, J. Bednarek, M. R. Nowicki, <b>K. Walas</b></div><div class="v">European Conference on Mobile Robots (ECMR)</div></div></li>
+        <li><span class="date">2021</span><div><a class="t" href="https://doi.org/10.3390/electronics10010096">Gaining a sense of touch object stiffness estimation using a soft gripper and neural networks</a><div class="a">M. Bednarek, P. Kicki, J. Bednarek, <b>K. Walas</b></div><div class="v">Electronics</div></div></li>
+        <li><span class="date">2021</span><div><a class="t" href="https://www.onetunnel.org/documents/semi-autonomous-inspection-of-a-belt-conveyor-in-an-industrial-environment-with-the-use-of-a-legged-robot-apcom-2021">Semi-autonomous inspection of a belt conveyor in an industrial environment with the use of a legged robot</a><div class="a">P. Stefaniak, A. Skoczylas, M. Nowicki, <b>K. Walas</b>, M. Stachowiak</div><div class="v">APCOM Symposium on the Application of Computers and Operations Research in the Mineral Industry</div></div></li>
+        <li><span class="date">2021</span><div><a class="t" href="https://doi.org/10.3390/s21134327">Tell me, what do you see?—interpretable classification of wiring harness branches with deep neural networks</a><div class="a">P. Kicki, M. Bednarek, P. Lembicz, G. Mierzwiak, A. Szymko, M. Kraft, <b>K. Walas</b></div><div class="v">Sensors</div></div></li>
+        <li><span class="date">2020</span><div><a class="t" href="https://doi.org/10.3390/electronics9071152">On robustness of multi-modal fusion—Robotics perspective</a><div class="a">M. Bednarek, P. Kicki, <b>K. Walas</b></div><div class="v">Electronics</div></div></li>
+        <li><span class="date">2020</span><div><a class="t" href="https://doi.org/10.3390/electronics9071147">PUT-hand—Hybrid industrial and biomimetic gripper for elastic object manipulation</a><div class="a">T. Mańkowski, J. Tomczyński, <b>K. Walas</b>, D. Belter</div><div class="v">Electronics</div></div></li>
+        <li><span class="date">2019</span><div><a class="t" href="https://doi.org/10.1109/icrae48301.2019.9043790">Comparative assessment of reinforcement learning algorithms in the task of robotic manipulation of deformable linear objects</a><div class="a">M. Bednarek, <b>K. Walas</b></div><div class="v">International Conference on Robotics and Automation Engineering (ICRAE)</div></div></li>
+        <li><span class="date">2019</span><div><a class="t" href="https://doi.org/10.1109/icrae48301.2019.9043793">Friction from Reflectance: Transfer Learning Approach</a><div class="a">P. Kicki, <b>K. Walas</b></div><div class="v">International Conference on Robotics and Automation Engineering (ICRAE)</div></div></li>
+        <li><span class="date">2019</span><div><a class="t" href="https://icra2019wslocomotion.wordpress.com/wp-content/uploads/2019/05/13-icra2019ws-2.pdf">Learning On-Line Friction Estimation for Walking Robots</a><div class="a">M. Bednarek, J. Bednarek, N. Maalouf, <b>K. Walas</b></div><div class="v">ICRA locomotion workshop</div></div></li>
+        <li><span class="date">2019</span><div><a class="t" href="https://doi.org/10.23919/spa.2019.8936834">Robotic manipulation of elongated and elastic objects</a><div class="a">P. Kicki, M. Bednarek, <b>K. Walas</b></div><div class="v">Signal Processing: Algorithms, Architectures, Arrangements, and Applications (SPA)</div></div></li>
+        <li><span class="date">2019</span><div><a class="t" href="https://doi.org/10.1109/robosoft.2019.8722819">Robotic touch: Classification of materials for manipulation and walking</a><div class="a">J. Bednarek, M. Bednarek, P. Kicki, <b>K. Walas</b></div><div class="v">IEEE International Conference on Soft Robotics (RoboSoft)</div></div></li>
+        <li><span class="date">2019</span><div><a class="t" href="https://doi.org/10.1007/978-3-319-99220-4_42">Why should inspection robots be used in deep underground mines?</a><div class="a">R. Zimroz, M. Hutter, M. Mistry, P. Stefaniak, <b>K. Walas</b>, J. Wodecki</div><div class="v">International Symposium on Mine Planning and Equipment Selection (MPES)</div></div></li>
+        <li><span class="date">2018</span><div><a class="t" href="https://doi.org/10.1007/978-3-030-11009-3_36">A summary of the 4th international workshop on recovering 6D object pose</a><div class="a">T. Hodaň et al., incl. <b>K. Walas</b></div><div class="v">Computer Vision – ECCV 2018 Workshops</div></div></li>
+        <li><span class="date">2018</span><div><a class="t" href="https://doi.org/10.23919/ursi.2018.8406736">Deep neural networks for terrain recognition task</a><div class="a">P. Kozlowski, <b>K. Walas</b></div><div class="v">Baltic URSI Symposium</div></div></li>
+        <li><span class="date">2018</span><div><a class="t" href="https://doi.org/10.1109/humanoids.2018.8624980">Measuring bending angle and hallucinating shape of elongated deformable objects</a><div class="a">P. Kicki, M. Bednarek, <b>K. Walas</b></div><div class="v">IEEE-RAS International Conference on Humanoid Robots (Humanoids)</div></div></li>
+        <li><span class="date">2018</span><div><a class="t" href="https://doi.org/10.23919/spa.2018.8563402">Simulated Local Deformation &amp; Focal Length Optimisation For Improved Template-Based 3D Reconstruction of Non-Rigid Objects</a><div class="a">M. Bednarek, <b>K. Walas</b></div><div class="v">Signal Processing: Algorithms, Architectures, Arrangements, and Applications (SPA)</div></div></li>
+        <li><span class="date">2018</span><div><a class="t" href="https://doi.org/10.23919/spa.2018.8563429">Spatial Transformations in Deep Neural Networks</a><div class="a">M. Bednarek, <b>K. Walas</b></div><div class="v">Signal Processing: Algorithms, Architectures, Arrangements, and Applications (SPA)</div></div></li>
+        <li><span class="date">2017</span><div><a class="t" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=0FZ0cZQAAAAJ&amp;pagesize=100&amp;citation_for_view=0FZ0cZQAAAAJ:_Qo2XoVZTnwC">A delicate touch</a><div class="a"><b>K. Walas</b></div><div class="v">ACADEMIA: The Magazine of the Polish Academy of Sciences</div></div></li>
+        <li><span class="date">2017</span><div><a class="t" href="https://doi.org/10.23919/spa.2017.8166856">Local descriptors robust to out-of-plane rotations</a><div class="a">M. Bednarek, <b>K. Walas</b></div><div class="v">Signal Processing: Algorithms, Architectures, Arrangements, and Applications (SPA)</div></div></li>
+        <li><span class="date">2017</span><div><a class="t" href="https://doi.org/10.1007/978-3-319-54042-9_59">Review of 3D objects segmentation methods</a><div class="a">M. Wencka, <b>K. Walas</b></div><div class="v">International Conference Automation</div></div></li>
+        <li><span class="date">2016</span><div><a class="t" href="https://doi.org/10.1109/mfi.2016.7849459">Depth data fusion for simultaneous localization and mapping—RGB-DD SLAM</a><div class="a"><b>K. Walas</b>, M. Nowicki, D. Ferstl, P. Skrzypczyński</div><div class="v">IEEE International Conference on Multisensor Fusion and Integration for Intelligent Systems (MFI)</div></div></li>
+        <li><span class="date">2016</span><div><a class="t" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=0FZ0cZQAAAAJ&amp;pagesize=100&amp;citation_for_view=0FZ0cZQAAAAJ:Wp0gIr-vW9MC">RGB-DD: metody łączenia obrazów głębi oraz intensywności przez interpolację i fuzję danych w zadaniu SLAM</a><div class="a"><b>K. Walas</b>, M. Nowicki, P. Skrzypczyński</div><div class="v">Prace Naukowe Politechniki Warszawskiej. Elektronika</div></div></li>
+        <li><span class="date">2016</span><div><a class="t" href="https://doi.org/10.1109/humanoids.2016.7803265">Terrain Classification and Locomotion Parameters Adaptation for Humanoid Robots Using Force/Torque Sensing</a><div class="a"><b>K. Walas</b>, D. Kanoulas, P. Kryczka</div><div class="v">IEEE-RAS International Conference on Humanoid Robots (Humanoids)</div></div></li>
+        <li><span class="date">2015</span><div><a class="t" href="https://doi.org/10.1007/978-3-319-15847-1_3">Affordable multi-legged robots for research and STEM education: A case study of design and technological aspects</a><div class="a">D. Belter, P. Skrzypczyński, <b>K. Walas</b>, D. Wlodkowic</div><div class="v">Progress in Automation, Robotics and Measuring Techniques</div></div></li>
+        <li><span class="date">2015</span><div><a class="t" href="https://doi.org/10.1007/978-3-319-19665-7_24">Categorisation of 3D Objects in Range Images Using Compositional Hierarchies of Parts Based on MDL and Entropy Selection Criteria</a><div class="a">V. Kramarev, <b>K. Walas</b>, A. Leonardis</div><div class="v">Scandinavian Conference on Image Analysis (SCIA)</div></div></li>
+        <li><span class="date">2015</span><div><a class="t" href="https://doi.org/10.1007/978-3-319-15847-1_27">CIE-Hand towards Prosthetic Limb</a><div class="a">J. Tomczyński, T. Mańkowski, <b>K. Walas</b>, P. Kaczmarek</div><div class="v">Progress in Automation, Robotics and Measuring Techniques</div></div></li>
+        <li><span class="date">2015</span><div><a class="t" href="https://doi.org/10.1109/iros.2015.7353859">Learning terrain types with the Pitman-Yor process mixtures of Gaussians for a legged robot</a><div class="a">P. Dallaire, <b>K. Walas</b>, P. Giguère, B. Chaib-draa</div><div class="v">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</div></div></li>
+        <li><span class="date">2015</span><div><a class="t" href="https://doi.org/10.1007/978-3-319-15847-1_2">Lightweight RGB-D SLAM system for search and rescue robots</a><div class="a">D. Belter, M. Nowicki, P. Skrzypczyński, <b>K. Walas</b>, J. Wietrzykowski</div><div class="v">Progress in Automation, Robotics and Measuring Techniques</div></div></li>
+        <li><span class="date">2014</span><div><a class="t" href="https://doi.org/10.1007/978-3-319-05353-0_33">A compact walking robot – flexible research and development platform</a><div class="a">D. Belter, <b>K. Walas</b></div><div class="v">Recent Advances in Automation, Robotics and Measuring Techniques</div></div></li>
+        <li><span class="date">2014</span><div><a class="t" href="https://doi.org/10.1109/icra.2014.6907665">A Hierarchical Approach for Joint Multi-view Object Pose Estimation and Categorization</a><div class="a">M. Ozay, <b>K. Walas</b>, A. Leonardis</div><div class="v">IEEE International Conference on Robotics and Automation (ICRA)</div></div></li>
+        <li><span class="date">2014</span><div><a class="t" href="https://doi.org/10.1142/9789814623353_0066">Dynamic simulation of legged robots using a physics engine</a><div class="a">D. Belter, P. Skrzypczyński, <b>K. Walas</b>, P. Fankhauser, C. Gehring, M. Hutter, M. A. Hoepflinger, R. Siegwart</div><div class="v">International Conference on Climbing and Walking Robots (CLAWAR)</div></div></li>
+        <li><span class="date">2014</span><div><a class="t" href="https://doi.org/10.1142/9789814623353_0069">Influence of Walking Speed and Direction of Movement on Tactile Ground Classification Process</a><div class="a"><b>K. Walas</b>, M. Czachorowski, T. Halasz</div><div class="v">International Conference on Climbing and Walking Robots (CLAWAR)</div></div></li>
+        <li><span class="date">2014</span><div><a class="t" href="https://doi.org/10.1109/iros.2014.6943273">Terrain classification using laser range finder</a><div class="a"><b>K. Walas</b>, M. Nowicki</div><div class="v">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</div></div></li>
+        <li><span class="date">2013</span><div><a class="t" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=0FZ0cZQAAAAJ&amp;pagesize=100&amp;citation_for_view=0FZ0cZQAAAAJ:ufrVoPGSRksC">Foot design for a hexapod walking robot</a><div class="a"><b>K. Walas</b></div><div class="v">Pomiary, Automatyka, Robotyka</div></div></li>
+        <li><span class="date">2013</span><div><a class="t" href="https://doi.org/10.1109/romoco.2013.6614594">Hardware implementation of ground classification for a walking robot</a><div class="a"><b>K. Walas</b>, A. Schmidt, M. Kraft, M. Fularz</div><div class="v">International Workshop on Robot Motion and Control (RoMoCo)</div></div></li>
+        <li><span class="date">2013</span><div><a class="t" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=0FZ0cZQAAAAJ&amp;pagesize=100&amp;citation_for_view=0FZ0cZQAAAAJ:WF5omc3nYNoC">Tactile sensing for ground classification</a><div class="a"><b>K. Walas</b></div><div class="v">Journal of Automation, Mobile Robotics and Intelligent Systems</div></div></li>
+        <li><span class="date">2013</span><div><a class="t" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=0FZ0cZQAAAAJ&amp;pagesize=100&amp;citation_for_view=0FZ0cZQAAAAJ:LkGwnXOMwfcC">Terrain Classification Using Vision, Depth and Tactile Perception.</a><div class="a"><b>K. Walas</b></div><div class="v">RSS Workshop on RGB-D: Advanced Reasoning with Depth Cameras</div></div></li>
+        <li><span class="date">2013</span><div><a class="t" href="https://doi.org/10.1007/978-3-319-00969-8_81">The classification of the terrain by a hexapod robot</a><div class="a">A. Schmidt, <b>K. Walas</b></div><div class="v">International Conference on Computer Recognition Systems (CORES)</div></div></li>
+        <li><span class="date">2012</span><div><a class="t" href="https://doi.org/10.1109/iros.2012.6385759">Discrete event controller for urban obstacles negotiation with walking robot</a><div class="a"><b>K. Walas</b>, A. Kasiński</div><div class="v">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</div></div></li>
+        <li><span class="date">2012</span><div><a class="t" href="https://doi.org/10.1007/978-1-4471-2343-9_11">Improving accuracy of local maps with active haptic sensing</a><div class="a"><b>K. Walas</b></div><div class="v">International Workshop on Robot Motion and Control (RoMoCo)</div></div></li>
+        <li><span class="date">2011</span><div><a class="t" href="https://doi.org/10.3182/20110828-6-it-1002.02747">Autonomous stair climbing with multisensor feedback</a><div class="a">P. Łabęcki, <b>K. Walas</b>, A. Kasiński</div><div class="v">IFAC Proceedings Volumes</div></div></li>
+        <li><span class="date">2011</span><div><a class="t" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=0FZ0cZQAAAAJ&amp;pagesize=100&amp;citation_for_view=0FZ0cZQAAAAJ:9yKSN-GCB0IC">Messor – Versatile walking robot for search and rescue missions</a><div class="a"><b>K. Walas</b>, D. Belter</div><div class="v">Journal of Automation, Mobile Robotics and Intelligent Systems</div></div></li>
+        <li><span class="date">2011</span><div><a class="t" href="https://doi.org/10.1142/9789814374286_0095">Obtaining Geometry of Stairs Using Monocular Vision System</a><div class="a"><b>K. Walas</b></div><div class="v">International Conference on Climbing and Walking Robots (CLAWAR)</div></div></li>
+        <li><span class="date">2011</span><div><a class="t" href="https://doi.org/10.2478/v10006-011-0027-9">Supporting locomotive functions of a six-legged walking robot</a><div class="a"><b>K. Walas</b>, D. Belter</div><div class="v">International Journal of Applied Mathematics and Computer Science</div></div></li>
+        <li><span class="date">2010</span><div><a class="t" href="https://doi.org/10.1142/9789814329927_0096">Fully parametrized stair climbing strategy for a six-legged walking robot</a><div class="a"><b>K. Walas</b></div><div class="v">International Conference on Climbing and Walking Robots (CLAWAR)</div></div></li>
+        <li><span class="date">2010</span><div><a class="t" href="https://doi.org/10.1142/9789814329927_0124">Multisensor perception for autonomous stair climbing with a six legged robot</a><div class="a">P. Łabęcki, <b>K. Walas</b></div><div class="v">International Conference on Climbing and Walking Robots (CLAWAR)</div></div></li>
+        <li><span class="date">2010</span><div><a class="t" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=0FZ0cZQAAAAJ&amp;pagesize=100&amp;citation_for_view=0FZ0cZQAAAAJ:Tyk-4Ss8FVUC">Strategia adaptacyjnego ruchu robota kroczącego po nierównym terenie</a><div class="a">D. Belter, <b>K. Walas</b></div><div class="v">Prace Naukowe Politechniki Warszawskiej. Elektronika</div></div></li>
+        <li><span class="date">2009</span><div><a class="t" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=0FZ0cZQAAAAJ&amp;pagesize=100&amp;citation_for_view=0FZ0cZQAAAAJ:YsMSGLbcyi4C">Autonomiczny robot sześcionożny – rozwój konstrukcji i systemu sterowania</a><div class="a">D. Belter, <b>K. Walas</b>, P. Skrzypczyński</div><div class="v">Pomiary, Automatyka, Robotyka</div></div></li>
+        <li><span class="date">2009</span><div><a class="t" href="https://doi.org/10.1007/978-1-84882-985-5_19">Static equilibrium condition for a multi-leg, stairs climbing walking robot</a><div class="a"><b>K. Walas</b></div><div class="v">International Workshop on Robot Motion and Control (RoMoCo)</div></div></li>
+        <li><span class="date">2008</span><div><a class="t" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=0FZ0cZQAAAAJ&amp;pagesize=100&amp;citation_for_view=0FZ0cZQAAAAJ:u5HHmVD_uO8C">Control and environment sensing system for a six-legged robot</a><div class="a"><b>K. Walas</b>, D. Belter, A. Kasiński</div><div class="v">Journal of Automation, Mobile Robotics and Intelligent Systems</div></div></li>
+        <li><span class="date">2008</span><div><a class="t" href="https://doi.org/10.1109/epepemc.2008.4635405">Distributed control system of DC servomotors for six legged walking robot</a><div class="a">D. Belter, <b>K. Walas</b>, A. Kasiński</div><div class="v">International Power Electronics and Motion Control Conference (EPE-PEMC)</div></div></li>
+      </ol>
+    </details>
+  </section>
+
+  <footer>© 2026 Krzysztof Walas. Updated November 2026.</footer>
+
+</main>
 </body>
 </html>
